@@ -11,7 +11,7 @@ describe('BrowserReducer', function () {
   })
 
   beforeEach(function () {
-    let reducer = new BrowserReducer()
+    const reducer = new BrowserReducer()
     this.reduce = reducer.reduce.bind(reducer)
   })
 

@@ -1,26 +1,26 @@
 import cookie from 'cookie'
 
 export default class SessionReducer {
-  constructor (config = {}) {
+  constructor(config = {}) {
     this.config = Object.assign(this.defaults, config)
   }
 
-  reduce (data = {}) {
+  reduce(data = {}) {
     return Object.assign(data, this.data)
   }
 
-  requestId () {
+  requestId() {
     return (new Date()).getTime() + ('00' + Math.floor(Math.random() * 1000)).slice(-3)
   }
 
-  setCookie (name, value, options) {
+  setCookie(name, value, options) {
     document.cookie = cookie.serialize(name, value, Object.assign({
       domain: `.${window.location.host}`,
       path: '/'
     }, options))
   }
 
-  getData () {
+  getData() {
     const {
       sessionKey,
       sessionAge,
@@ -48,11 +48,11 @@ export default class SessionReducer {
     }
   }
 
-  get data () {
+  get data() {
     return this._data || (this._data = this.getData())
   }
 
-  get defaults () {
+  get defaults() {
     return {
       visitorKey: 'rp_visitor_id',
       sessionKey: 'rp_session_id',

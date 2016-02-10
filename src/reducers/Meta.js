@@ -1,9 +1,9 @@
 export default class MetaReducer {
-  reduce (data = {}) {
+  reduce(data = {}) {
     return Object.assign(data, this.data)
   }
 
-  getData () {
+  getData() {
     const tags = Array.from(document.getElementsByTagName('meta'))
     return tags.reduce((data, tag) => {
       if (tag.name) data[tag.name] = tag.content
@@ -11,7 +11,7 @@ export default class MetaReducer {
     }, {})
   }
 
-  get data () {
+  get data() {
     return this._data || (this._data = this.getData())
   }
 }

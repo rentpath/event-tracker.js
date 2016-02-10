@@ -11,7 +11,7 @@ describe('DeviceReducer', function () {
   })
 
   beforeEach(function () {
-    let reducer = new DeviceReducer()
+    const reducer = new DeviceReducer()
     this.reduce = reducer.reduce.bind(reducer)
   })
 

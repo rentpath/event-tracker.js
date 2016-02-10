@@ -1,5 +1,6 @@
 export default class ViewTracker {
-  constructor (track) {
-    document.addEventListener('DOMContentLoaded', () => track('view'))
+  constructor(config, tracker) {
+    this.config = Object.assign({}, config)
+    document.addEventListener('DOMContentLoaded', () => tracker.track('view'))
   }
 }

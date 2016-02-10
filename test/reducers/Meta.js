@@ -18,7 +18,7 @@ describe('MetaReducer', function () {
   })
 
   beforeEach(function () {
-    let reducer = new MetaReducer()
+    const reducer = new MetaReducer()
     this.reduce = reducer.reduce.bind(reducer)
   })
 

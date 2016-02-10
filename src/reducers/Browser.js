@@ -1,11 +1,11 @@
 import browserDetect from 'browser-detect'
 
 export default class BrowserReducer {
-  reduce (data = {}) {
+  reduce(data = {}) {
     return Object.assign(data, this.data)
   }
 
-  getData () {
+  getData() {
     return {
       browser: this.browser,
       browser_size: this.browserSize,
@@ -13,19 +13,19 @@ export default class BrowserReducer {
     }
   }
 
-  get data () {
+  get data() {
     return this._data || (this._data = this.getData())
   }
 
-  get browser () {
+  get browser() {
     return browserDetect().browser
   }
 
-  get browserSize () {
+  get browserSize() {
     return `${window.screen.width}x${window.screen.height}`
   }
 
-  get browserVersion () {
+  get browserVersion() {
     return browserDetect().version
   }
 }

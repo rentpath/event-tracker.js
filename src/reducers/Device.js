@@ -1,15 +1,15 @@
 import browserDetect from 'browser-detect'
 
 export default class DeviceReducer {
-  constructor (config) {
+  constructor(config) {
     this.config = Object.assign(this.defaults, config)
   }
 
-  reduce (data = {}) {
+  reduce(data = {}) {
     return Object.assign(data, this.data)
   }
 
-  getData () {
+  getData() {
     return {
       screen_type: this.screenType,
       screen_resolution: this.screenResolution,
@@ -17,15 +17,15 @@ export default class DeviceReducer {
     }
   }
 
-  get data () {
+  get data() {
     return this._data || (this._data = this.getData())
   }
 
-  get screenResolution () {
+  get screenResolution() {
     return `${window.innerWidth}x${window.innerHeight}`
   }
 
-  get screenType () {
+  get screenType() {
     const screenWidth = window.innerWidth
     const breakpoints = this.config.breakpoints
     return Object.keys(breakpoints).reduce((prev, name) => {
@@ -33,11 +33,11 @@ export default class DeviceReducer {
     })
   }
 
-  get operatingSystem () {
+  get operatingSystem() {
     return browserDetect().OS
   }
 
-  get defaults () {
+  get defaults() {
     return {
       breakpoints: {
         mobile: 0,

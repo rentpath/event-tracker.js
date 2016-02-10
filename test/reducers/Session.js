@@ -6,7 +6,7 @@ describe('SessionReducer', function () {
   beforeEach(function () {
     this.jsdom = require('jsdom-global')()
 
-    let reducer = new SessionReducer()
+    const reducer = new SessionReducer()
     this.reduce = reducer.reduce.bind(reducer)
 
     sinon.stub(reducer, 'requestId').returns('123')

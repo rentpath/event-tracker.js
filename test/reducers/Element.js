@@ -18,7 +18,7 @@ describe('ElementReducer', function () {
   })
 
   beforeEach(function () {
-    let reducer = new ElementReducer()
+    const reducer = new ElementReducer()
     this.reduce = reducer.reduce.bind(reducer)
   })
 

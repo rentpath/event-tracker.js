@@ -11,7 +11,7 @@ describe('RequestReducer', function () {
   })
 
   beforeEach(function () {
-    let reducer = new RequestReducer()
+    const reducer = new RequestReducer()
     this.reduce = reducer.reduce.bind(reducer)
   })
 

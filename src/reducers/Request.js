@@ -1,13 +1,13 @@
 export default class RequestReducer {
-  reduce (data = {}) {
+  reduce(data = {}) {
     return Object.assign(data, this.data)
   }
 
-  get data () {
+  get data() {
     return this._data || (this._data = this.getData())
   }
 
-  getData () {
+  getData() {
     const req = window.location
     return {
       url: req.href,

@@ -1,32 +1,35 @@
+import configurable from '../utils/configurable'
+
+@configurable
 export default class Tealium {
-  constructor (config) {
-    this.config = Object.assign(this.defaults, config)
+  constructor(config) {
+    this.configure(this.defaults, config)
     this.load()
   }
 
-  get url () {
+  get url() {
     const { account, profile, env } = this.config
     return `//tags.tiqcdn.com/utag/${account}/${profile}/${env}/utag.js`
   }
 
-  get queue () {
+  get queue() {
     return this._queue || (this._queue = [])
   }
 
-  track (data) {
+  track(data) {
     this.queue.push(data)
   }
 
-  deliver (data) {
+  deliver(data) {
     window.utag.link(data)
   }
 
-  load () {
+  load() {
     const script = this.createScript()
     document.getElementsByTagName('head')[0].appendChild(script)
   }
 
-  onLoad () {
+  onLoad() {
     this.track = (data) => this.deliver(data)
     const { queue } = this
     while (queue.length) {
@@ -34,9 +37,9 @@ export default class Tealium {
     }
   }
 
-  createScript () {
+  createScript() {
     const script = document.createElement('script')
-    script.addEventListener('load', (event) => this.onLoad())
+    script.addEventListener('load', () => this.onLoad())
     return Object.assign(script, {
       src: this.url,
       type: 'text/javascript',
@@ -44,7 +47,7 @@ export default class Tealium {
     })
   }
 
-  get defaults () {
+  get defaults() {
     return {
       env: 'dev',
       account: 'rentpath',

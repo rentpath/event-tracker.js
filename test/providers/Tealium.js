@@ -14,6 +14,22 @@ describe('Tealium', function () {
 
   })
 
+  describe('#url', function () {
+
+  })
+
+  describe('#load', function () {
+
+  })
+
+  describe('#onLoad', function () {
+
+  })
+
+  describe('#createScript', function () {
+
+  })
+
   describe('#track', function () {
 
   })

@@ -1,20 +1,20 @@
 export default class EventTracker {
-  constructor (track, config) {
+  constructor(config, tracker) {
     this.config = Object.assign(this.defaults, config)
-    this._track = track
+    this.tracker = tracker
     this.addListeners()
   }
 
-  track (...args) {
-    this._track(...args)
+  track(...args) {
+    this.tracker.track(...args)
   }
 
-  addListeners () {
+  addListeners() {
     const { events } = this.config
     Object.keys(events).forEach((name) => this.addListener(name, events[name]))
   }
 
-  addListener (name, action) {
+  addListener(name, action) {
     document.addEventListener(name, (event) => this.track(action, { event }))
   }
 

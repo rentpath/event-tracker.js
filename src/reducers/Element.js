@@ -1,9 +1,9 @@
 export default class ElementReducer {
-  constructor (config) {
+  constructor(config) {
     this.config = Object.assign(this.defaults, config)
   }
 
-  reduce (data = {}) {
+  reduce(data = {}) {
     const node = data.element || (data.event && data.event.target)
     if (node) {
       return Object.assign(data, this.getData(node))
@@ -12,13 +12,13 @@ export default class ElementReducer {
     }
   }
 
-  getData (node) {
+  getData(node) {
     return this.getStack(node).reduce((data, node) => {
       return Object.assign(data, this.getAtts(node), this.getTags(node))
     }, this.getInfo(node))
   }
 
-  getStack (node) {
+  getStack(node) {
     const stack = []
     while (node) {
       stack.push(node)
@@ -27,7 +27,7 @@ export default class ElementReducer {
     return stack.slice(0, -1).reverse()
   }
 
-  getTags (node) {
+  getTags(node) {
     const atts = node.attributes
     const prefix = this.config.tagPrefix
     return Object.keys(atts).filter((key) => {
@@ -38,7 +38,7 @@ export default class ElementReducer {
     }, {})
   }
 
-  getInfo (node) {
+  getInfo(node) {
     const info = {}
     if (node.src) {
       info.image = node.src
@@ -49,7 +49,7 @@ export default class ElementReducer {
     return info
   }
 
-  getAtts (node) {
+  getAtts(node) {
     const atts = {}
     if (node.href) {
       atts.href = node.getAttribute('href')
@@ -57,11 +57,11 @@ export default class ElementReducer {
     return atts
   }
 
-  isInput (node) {
+  isInput(node) {
     return ~['INPUT', 'TEXTAREA', 'SELECT'].indexOf(node.nodeName)
   }
 
-  get defaults () {
+  get defaults() {
     return {
       tagPrefix: 'data-tag_'
     }
