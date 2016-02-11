@@ -1,3 +1,4 @@
+import sinon from 'sinon'
 import { expect } from 'chai'
 import emitter from '../../src/utils/emitter'
 
@@ -8,10 +9,31 @@ describe('utils/emitter', function() {
     this.subject = new Tracker()
   })
 
-  it('adds on/trigger methods', function() {
-    const calls = []
-    this.subject.on('foo', num => calls.push('one', num))
-    this.subject.trigger('foo', 1)
-    expect(calls).to.eql(['one', 1])
+  describe('#on', function() {
+    it('adds event listeners', function () {
+      const spy = sinon.spy()
+      this.subject.on('foo', spy)
+      this.subject.trigger('foo')
+      expect(spy.called).to.be.true
+    })
+  })
+
+  describe('#off', function() {
+    it('removes event listeners', function() {
+      const spy = sinon.spy()
+      this.subject.on('foo', spy)
+      this.subject.off('foo', spy)
+      this.subject.trigger('foo')
+      expect(spy.called).to.be.false
+    })
+  })
+
+  describe('#trigger', function() {
+    it('invokes listeners with passed arguments', function() {
+      const spy = sinon.spy()
+      this.subject.on('foo', spy)
+      this.subject.trigger('foo', 'bar')
+      expect(spy.calledWith('bar')).to.be.true
+    })
   })
 })
