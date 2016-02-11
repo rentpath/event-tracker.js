@@ -14,5 +14,5 @@ export default function initModule(type, name, ...args) {
     if (!Module) throw new Error(`Unable to find module "${item}"`)
   }
 
-  return new Module(config, ...extra.concat(args))
+  return new Module(config, ...args.concat(extra))
 }

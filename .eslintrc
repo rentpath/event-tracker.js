@@ -1,5 +1,5 @@
 {
-  "extends": "eslint-config-rentpath",
+  "extends": "rentpath",
   "parser": "babel-eslint",
   "env": {
     "node": true

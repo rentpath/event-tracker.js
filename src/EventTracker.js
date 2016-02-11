@@ -26,6 +26,11 @@ export default class EventTracker {
     return this.track('view', ...args)
   }
 
+  debug(...args) {
+    if (args.length) this._debug = !!args[0]
+    return this._debug
+  }
+
   _process(data) {
     return sanitize(this._reduce(data))
   }
@@ -40,14 +45,6 @@ export default class EventTracker {
         prev.concat(initModule(group, name, this))
       ), [])
     })
-  }
-
-  get debug() {
-    return this._debug
-  }
-
-  set debug(debug) {
-    this._debug = !!debug
   }
 
   get defaults() {

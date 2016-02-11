@@ -4,5 +4,12 @@
   "version": "0.0.1",
   "homepage": "https://github.com/rentpath/event-tracker.js",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "ignore": [
+    "bin",
+    "src",
+    "coverage",
+    "node_modules",
+    "test"
+  ]
 }
