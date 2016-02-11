@@ -6,7 +6,9 @@ export default class MetaReducer {
   getData() {
     const tags = Array.from(document.getElementsByTagName('meta'))
     return tags.reduce((data, tag) => {
-      if (tag.name) data[tag.name] = tag.content
+      if (tag.name) {
+        Object.assign(data, { [tag.name]: tag.content })
+      }
       return data
     }, {})
   }

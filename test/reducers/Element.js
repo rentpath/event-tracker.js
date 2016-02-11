@@ -7,58 +7,58 @@ function getElement(id) {
   return { element: document.getElementById(id) }
 }
 
-describe('ElementReducer', function () {
-  before(function () {
+describe('ElementReducer', function() {
+  before(function() {
     this.jsdom = require('jsdom-global')()
     document.body.innerHTML = fs.readFileSync(path.join(__dirname, '../fixtures/index.html'))
   })
 
-  after(function () {
+  after(function() {
     this.jsdom()
   })
 
-  beforeEach(function () {
+  beforeEach(function() {
     const reducer = new ElementReducer()
     this.reduce = reducer.reduce.bind(reducer)
   })
 
-  describe('#reduce', function () {
-    it('assigns link url\'s', function () {
+  describe('#reduce', function() {
+    it('assigns link url\'s', function() {
       const result = this.reduce(getElement('link'))
       expect(result.href).to.equal('/foo')
     })
 
-    it('assigns image url\'s', function () {
+    it('assigns image url\'s', function() {
       const result = this.reduce(getElement('image'))
       expect(result.image).to.equal('foo.jpg')
     })
 
-    it('assigns input values', function () {
+    it('assigns input values', function() {
       const result = this.reduce(getElement('input'))
       expect(result.value).to.equal('foo')
     })
 
-    it('assigns textarea values', function () {
+    it('assigns textarea values', function() {
       const result = this.reduce(getElement('textarea'))
       expect(result.value).to.equal('foo')
     })
 
-    it('assigns select values', function () {
+    it('assigns select values', function() {
       const result = this.reduce(getElement('select'))
       expect(result.value).to.equal('foo')
     })
 
-    it('assigns data attribute values', function () {
+    it('assigns data attribute values', function() {
       const result = this.reduce(getElement('section'))
       expect(result.section).to.equal('foo')
     })
 
-    it('assigns data attribute values found on parent nodes', function () {
+    it('assigns data attribute values found on parent nodes', function() {
       const result = this.reduce(getElement('item'))
       expect(result.section).to.equal('foo')
     })
 
-    it('favors deeper nested elements when merging data attribute values', function () {
+    it('favors deeper nested elements when merging data attribute values', function() {
       const result = this.reduce(getElement('nested-item'))
       expect(result.item).to.equal('bar')
     })

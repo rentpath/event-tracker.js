@@ -1,38 +1,38 @@
 import { expect } from 'chai'
 import RequestReducer from '../../src/reducers/Request'
 
-describe('RequestReducer', function () {
-  before(function () {
+describe('RequestReducer', function() {
+  before(function() {
     this.jsdom = require('jsdom-global')()
   })
 
-  after(function () {
+  after(function() {
     this.jsdom()
   })
 
-  beforeEach(function () {
+  beforeEach(function() {
     const reducer = new RequestReducer()
     this.reduce = reducer.reduce.bind(reducer)
   })
 
-  describe('#reduce', function () {
-    it('assigns a url', function () {
+  describe('#reduce', function() {
+    it('assigns a url', function() {
       expect(this.reduce().url).to.exist
     })
 
-    it('assigns a path', function () {
+    it('assigns a path', function() {
       expect(this.reduce().path).to.exist
     })
 
-    it('assigns a hash', function () {
+    it('assigns a hash', function() {
       expect(this.reduce().hash).to.exist
     })
 
-    it('assigns a domain', function () {
+    it('assigns a domain', function() {
       expect(this.reduce().domain).to.exist
     })
 
-    it('assigns a query string', function () {
+    it('assigns a query string', function() {
       expect(this.reduce().query_string).to.exist
     })
   })

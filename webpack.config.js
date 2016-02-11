@@ -5,8 +5,8 @@ module.exports = {
   entry: './index',
 
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'EventTracker.js',
+    path: path.join(__dirname, 'lib'),
+    filename: 'bundle.min.js',
     libraryTarget: 'amd'
   },
 

@@ -7,7 +7,30 @@ $ npm i --save 'git+ssh://git@github.com:rentpath/event-tracker.js.git'
 
 ## Usage
 ```javascript
+import Tracker from 'event-tracker'
 
+const tealiumConfig = {
+  env: 'dev',
+  account: 'rentpath',
+  profile: 'rent.com'
+}
+
+const tracker = Tracker.create({
+  providers: [
+    ['Tealium', tealiumConfig]
+  ],
+  trackers: [
+    'View',
+    'Click',
+    'Select'
+  ],
+  reducers: [
+    'Session',
+    'Browser',
+    'Device',
+    'Element'
+  ]
+})
 ```
 
 ## Scripts
@@ -22,7 +45,7 @@ $ npm i --save 'git+ssh://git@github.com:rentpath/event-tracker.js.git'
 ## Distribution
 Execute one of the following commands
 ```bash
-npm version patch
-npm version minor
-npm version major
+npm version patch -m "bump to %s"
+npm version minor -m "bump to %s"
+npm version major -m "bump to %s"
 ```

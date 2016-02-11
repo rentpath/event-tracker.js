@@ -1,36 +1,20 @@
+/* eslint no-unused-vars: 0 */
 import { expect } from 'chai'
 import Tealium from '../../src/providers/Tealium'
 
-describe('Tealium', function () {
-  before(function () {
+describe('Tealium', function() {
+  beforeEach(function() {
     this.jsdom = require('jsdom-global')()
   })
 
-  after(function () {
+  afterEach(function() {
     this.jsdom()
   })
 
-  beforeEach(function () {
-
-  })
-
-  describe('#url', function () {
-
-  })
-
-  describe('#load', function () {
-
-  })
-
-  describe('#onLoad', function () {
-
-  })
-
-  describe('#createScript', function () {
-
-  })
-
-  describe('#track', function () {
-
+  describe('#constructor', function() {
+    it('loads utag.js', function() {
+      const tealium = new Tealium()
+      expect(document.getElementsByTagName('script').length).to.equal(1)
+    })
   })
 })

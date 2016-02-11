@@ -11,14 +11,14 @@ export default class EventTracker {
 
   addListeners() {
     const { events } = this.config
-    Object.keys(events).forEach((name) => this.addListener(name, events[name]))
+    Object.keys(events).forEach(name => this.addListener(name, events[name]))
   }
 
   addListener(name, action) {
-    document.addEventListener(name, (event) => this.track(action, { event }))
+    document.addEventListener(name, event => this.track(action, { event }))
   }
 
-  get defaults () {
+  get defaults() {
     return {
       events: {}
     }

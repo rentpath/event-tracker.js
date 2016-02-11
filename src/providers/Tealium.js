@@ -30,7 +30,7 @@ export default class Tealium {
   }
 
   onLoad() {
-    this.track = (data) => this.deliver(data)
+    this.track = data => this.deliver(data)
     const { queue } = this
     while (queue.length) {
       this.track(queue.pop())

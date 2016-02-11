@@ -10,7 +10,7 @@ export default function emitter(target) {
 
     trigger(event, ...args) {
       if (listeners[event]) {
-        listeners[event].slice().forEach((fn) => fn(...args))
+        listeners[event].slice().forEach(fn => fn(...args))
       }
       return this
     }

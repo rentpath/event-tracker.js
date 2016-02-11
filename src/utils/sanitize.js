@@ -1,9 +1,10 @@
 export default function sanitize(data = {}) {
-  return Object.keys(data).reduce(function (sanitized, key) {
+  return Object.keys(data).reduce((sanitized, key) => {
+    const obj = sanitized
     const val = data[key]
     if (val === 0 || Array.isArray(val) || val && typeof val !== 'object') {
-      sanitized[key] = val.toString()
+      obj[key] = val.toString()
     }
-    return sanitized
+    return obj
   }, {})
 }

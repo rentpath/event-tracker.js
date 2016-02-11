@@ -2,5 +2,9 @@
   "env": {
     "mocha": true,
     "browser": true
+  },
+  rules: {
+    "prefer-arrow-callback": 0,
+    "no-unused-expressions": 0
   }
 }

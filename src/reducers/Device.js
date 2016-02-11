@@ -28,9 +28,9 @@ export default class DeviceReducer {
   get screenType() {
     const screenWidth = window.innerWidth
     const breakpoints = this.config.breakpoints
-    return Object.keys(breakpoints).reduce((prev, name) => {
-      return screenWidth >= breakpoints[name] ? name : prev
-    })
+    return Object.keys(breakpoints).reduce((prev, name) => (
+      screenWidth >= breakpoints[name] ? name : prev
+    ))
   }
 
   get operatingSystem() {

@@ -10,7 +10,7 @@ export default class SessionReducer {
   }
 
   requestId() {
-    return (new Date()).getTime() + ('00' + Math.floor(Math.random() * 1000)).slice(-3)
+    return (new Date()).getTime() + (`00${Math.floor(Math.random() * 1000)}`).slice(-3)
   }
 
   setCookie(name, value, options) {
