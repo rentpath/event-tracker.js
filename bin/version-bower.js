@@ -7,6 +7,7 @@ const bowerConfig = Object.assign({}, require(bowerFile), {
   version: npmConfig.version
 })
 
-fs.writeFile(bowerFile, JSON.stringify(bowerConfig, null, 2), (err) => {
-  if (err) throw err;
-})
+fs.writeFileSync(
+  bowerFile,
+  JSON.stringify(bowerConfig, null, 2) + "\n"
+)
