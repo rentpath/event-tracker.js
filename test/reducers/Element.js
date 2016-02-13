@@ -62,5 +62,16 @@ describe('ElementReducer', function() {
       const result = this.reduce(getElement('nested-item'))
       expect(result.item).to.equal('bar')
     })
+
+    it('does not assign voided link url\'s', function() {
+      const el = getElement('link-void')
+      const result = this.reduce(el)
+      expect(result.href).to.not.exist
+    })
+
+    it('does not assign link url\'s containing only a hash', function() {
+      const result = this.reduce(getElement('link-hash'))
+      expect(result.href).to.not.exist
+    })
   })
 })
