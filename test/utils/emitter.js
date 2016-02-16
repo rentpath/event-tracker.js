@@ -10,7 +10,7 @@ describe('utils/emitter', function() {
   })
 
   describe('#on', function() {
-    it('adds event listeners', function () {
+    it('adds event listeners', function() {
       const spy = sinon.spy()
       this.subject.on('foo', spy)
       this.subject.trigger('foo')
