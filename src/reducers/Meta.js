@@ -1,11 +1,17 @@
 export default class MetaReducer {
+  constructor(config) {
+    this.config = Object.assign(this.defaults, config)
+  }
+
   reduce(data = {}) {
     return Object.assign(data, this.data)
   }
 
   getData() {
-    const tags = Array.from(document.getElementsByTagName('meta'))
-    return tags.reduce((data, tag) => {
+    const filter = this.config.filter
+    const result = document.querySelectorAll(`meta${filter ? filter : ''}`)
+
+    return Array.from(result).reduce((data, tag) => {
       if (tag.name) Object.assign(data, { [tag.name]: tag.content })
       return data
     }, {})
@@ -13,5 +19,11 @@ export default class MetaReducer {
 
   get data() {
     return this._data || (this._data = this.getData())
+  }
+
+  get defaults() {
+    return {
+      filter: null
+    }
   }
 }
