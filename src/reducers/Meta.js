@@ -8,9 +8,7 @@ export default class MetaReducer {
   }
 
   getData() {
-    const filter = this.config.filter
-    const result = document.querySelectorAll(`meta${filter ? filter : ''}`)
-
+    const result = document.querySelectorAll(`meta${this.config.filter || ''}`)
     return Array.from(result).reduce((data, tag) => {
       if (tag.name) Object.assign(data, { [tag.name]: tag.content })
       return data
