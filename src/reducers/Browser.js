@@ -22,7 +22,7 @@ export default class BrowserReducer {
   }
 
   get browserSize() {
-    return `${window.screen.width}x${window.screen.height}`
+    return `${window.innerWidth}x${window.innerHeight}`
   }
 
   get browserVersion() {

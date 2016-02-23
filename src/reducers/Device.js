@@ -22,7 +22,7 @@ export default class DeviceReducer {
   }
 
   get screenResolution() {
-    return `${window.innerWidth}x${window.innerHeight}`
+    return `${window.screen.width}x${window.screen.height}`
   }
 
   get screenType() {
