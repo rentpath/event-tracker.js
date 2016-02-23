@@ -1,6 +1,12 @@
 export default class ViewTracker {
   constructor(config, tracker) {
     this.config = Object.assign({}, config)
-    document.addEventListener('DOMContentLoaded', () => tracker.track('view'))
+    const track = () => tracker.track('view')
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', track)
+    } else {
+      track()
+    }
   }
 }
