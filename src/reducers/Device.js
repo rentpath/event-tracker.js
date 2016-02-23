@@ -40,7 +40,7 @@ export default class DeviceReducer {
   get defaults() {
     return {
       breakpoints: {
-        mobile: 0,
+        smartphone: 0,
         tablet: 768,
         desktop: 1024
       }
