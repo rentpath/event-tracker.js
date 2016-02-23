@@ -35,10 +35,10 @@ export default class SessionReducer {
     const timestamp = new Date().getTime()
 
     this.setCookie(visitorKey, visitorId, {
-      expires: new Date(timestamp + visitorAge)
+      expires: visitorAge ? new Date(timestamp + visitorAge) : null
     })
     this.setCookie(sessionKey, sessionId, {
-      expires: new Date(timestamp + sessionAge)
+      expires: sessionAge ? new Date(timestamp + sessionAge) : null
     })
 
     return {
