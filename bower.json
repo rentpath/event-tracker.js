@@ -1,7 +1,7 @@
 {
   "name": "event-tracker",
   "main": "lib/bundle.min.js",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "homepage": "https://github.com/rentpath/event-tracker.js",
   "license": "MIT",
   "private": true,
