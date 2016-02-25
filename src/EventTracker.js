@@ -16,7 +16,7 @@ export default class EventTracker {
   }
 
   track(action, props) {
-    const data = this._process(Object.assign({ action }, props))
+    const data = this._process(Object.assign({ action }, this._data, props))
     this.trigger('track', data)
     this.providers.forEach(provider => provider.track(data))
     return this
@@ -38,7 +38,7 @@ export default class EventTracker {
   }
 
   _process(data) {
-    return sanitize(this._reduce(Object.assign(this._data || {}, data)))
+    return sanitize(this._reduce(data))
   }
 
   _reduce(data) {
