@@ -23,7 +23,13 @@ export default class EventTracker {
   }
 
   view(...args) {
+    this.trigger('view', ...args)
     return this.track('view', ...args)
+  }
+
+  include(data, merge = true) {
+    this._data = Object.assign(merge && this._data || {}, data)
+    return this
   }
 
   debug(...args) {
@@ -32,7 +38,7 @@ export default class EventTracker {
   }
 
   _process(data) {
-    return sanitize(this._reduce(data))
+    return sanitize(this._reduce(Object.assign(this._data || {}, data)))
   }
 
   _reduce(data) {

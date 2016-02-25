@@ -61,4 +61,23 @@ describe('EventTracker', function() {
       expect(this.spy.calledWith({ action: 'view', foo: 'bar' })).to.be.true
     })
   })
+
+  describe('#include', function() {
+    it('stores data to be included in future calls to #track', function() {
+      this.tracker.include({ foo: 'foo' }).track('test')
+      expect(this.spy.calledWith({ action: 'test', foo: 'foo' })).to.be.true
+    })
+
+    it('merges data by default', function() {
+      this.tracker.include({ foo: 'foo', bar: 'baz' })
+      this.tracker.include({ foo: 'bar' }).track('test')
+      expect(this.spy.calledWith({ action: 'test', foo: 'bar', bar: 'baz' })).to.be.true
+    })
+
+    it('replaces data if merge option set to false', function() {
+      this.tracker.include({ foo: 'foo', bar: 'baz' })
+      this.tracker.include({ foo: 'bar' }, false).track('test')
+      expect(this.spy.calledWith({ action: 'test', foo: 'bar' })).to.be.true
+    })
+  })
 })
