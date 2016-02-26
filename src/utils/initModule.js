@@ -6,8 +6,7 @@ const map = { providers, reducers, trackers }
 
 export default function initModule(type, name, ...args) {
   const parts = Array.isArray(name) ? name : [name]
-  const item = parts[0]
-  const config = parts[1] || {}
+  const [item, config] = parts
 
   let Module = item
   if (typeof Module === 'string') {
