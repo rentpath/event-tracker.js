@@ -8,8 +8,10 @@ export default class MetaReducer {
   }
 
   getData() {
-    const result = document.querySelectorAll(`meta${this.config.filter || ''}`)
-    return Array.from(result).reduce((data, tag) => {
+    const meta = document.querySelectorAll(`meta${this.config.filter || ''}`)
+    const tags = Array.prototype.slice.call(meta)
+
+    return tags.reduce((data, tag) => {
       if (tag.name) Object.assign(data, { [tag.name]: tag.content })
       return data
     }, {})
