@@ -45,7 +45,13 @@ export default class ElementReducer {
       info.image = element.src
     }
     if (this.isInput(element)) {
-      info.value = element.value
+      if (this.isSelect(element)) {
+        const node = element.options[element.selectedIndex]
+        const attr = `${this.config.tagPrefix}value`
+        info.value = node.getAttribute(attr) || node.value
+      } else {
+        info.value = element.value
+      }
     }
     return info
   }
@@ -61,6 +67,10 @@ export default class ElementReducer {
 
   isInput(node) {
     return ~['INPUT', 'TEXTAREA', 'SELECT'].indexOf(node.nodeName)
+  }
+
+  isSelect(node) {
+    return node.nodeName === 'SELECT'
   }
 
   get defaults() {

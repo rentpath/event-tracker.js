@@ -48,6 +48,11 @@ describe('ElementReducer', function() {
       expect(result.value).to.equal('foo')
     })
 
+    it('assigns custom select values', function() {
+      const result = this.reduce(getElement('select-custom'))
+      expect(result.value).to.equal('bar')
+    })
+
     it('assigns data attribute values', function() {
       const result = this.reduce(getElement('section'))
       expect(result.section).to.equal('foo')
