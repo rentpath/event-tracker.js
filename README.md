@@ -25,7 +25,7 @@ const tracker = EventTracker.create({
 ```
 
 ## Configuration
-Each `EventTracker` instance needs to be configured to use at least a single provider, and optionally one or more trackers and reducers.
+Each `EventTracker` instance needs to be configured to use at least a single [provider](#user-content-providers), and optionally [trackers](#user-content-trackers) and/or [reducers](#user-content-reducers).
 
 ### Providers
 Providers are 3rd party tag analytics services that offer custom event tracking, such as Tealium, Google Tag Manager or Adobe. In the context of `EventTracker` they are implemented as proxy adapters to the API's offered by each service.
@@ -40,6 +40,7 @@ Providers are 3rd party tag analytics services that offer custom event tracking,
 | `account` | string | `rentpath` | The TealiumIQ account name.
 | `profile` | string | `null` | The TealiumIQ profile name.
 
+---
 
 ### Trackers
 Trackers are observers that listen for native DOM events, and record corresponding tracking actions. The following trackers are currently supported:
@@ -52,6 +53,8 @@ Records a `click` action on all native click events.
 Records a `select` action on all native `change` events.
 #### `Form`
 Records a `submit` action on all native `submit` events.
+
+---
 
 ### Reducers
 Named after the `reduce` method found in many programming languages, reducers are utilities for adding additional information to each tracking event that gets dispatched.  They are called `reducers` because they are implemented as functions that receive the data payload as an argument, and whatever they return gets sent to the provider adapter.  The following reducers are currently supported:
@@ -70,6 +73,7 @@ Adds information about the device being used.
 | Option | Type | Default | Description         |
 | --- | --- | --- | ---
 | `breakpoints` | object | `{ mobile: 0, tablet: 768, desktop: 1024 }` | An object whose keys represent screen types, and values represent breakpoint thresholds.
+
 
 #### `Browser`
 Adds information about the browser being used.
@@ -126,6 +130,7 @@ Adds data collected from `data` tags placed on DOM nodes associated with native 
 | --- | --- | --- | ---
 | `tagPrefix` | string | `data-tag_` | The beginning part of the node attribute used to extract data.
 
+---
 
 ## API
 #####EventTracker.create(config)
@@ -151,6 +156,8 @@ Attaches additional data to every subsequent tracking event.  Data is merged by 
 ```javascript
 tracker.include({ browser: 'Chrome' })
 ```
+
+---
 
 ## Development
 
