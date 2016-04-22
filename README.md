@@ -3,7 +3,7 @@ A library for capturing and distributing event tracking data.
 
 ## Installation
 ```bash
-$ npm i --save 'git+ssh://git@github.com:rentpath/event-tracker.js.git'
+$ npm i --save 'rentpath/event-tracker'
 ```
 
 ## Usage
@@ -63,8 +63,8 @@ Providers are 3rd party tag analytics services that offer custom event tracking,
 | Option | Type | Default | Description         |
 | --- | --- | --- | ---
 | `env` | string | `dev` | The TealiumIQ environment.  Options are `dev`, 'qa', `prod`.
-| `account` | string | `rentpath` | The TealiumIQ account name.
-| `profile` | string | `null` | The TealiumIQ profile name.
+| `account` | string | `undefined` | The TealiumIQ account name.
+| `profile` | string | `undefined` | The TealiumIQ profile name.
 
 ---
 

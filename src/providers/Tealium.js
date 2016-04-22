@@ -50,8 +50,8 @@ export default class Tealium {
   get defaults() {
     return {
       env: 'dev',
-      account: 'rentpath',
-      profile: '[profile]'
+      account: undefined,
+      profile: undefined
     }
   }
 }
