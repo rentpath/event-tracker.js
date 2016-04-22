@@ -11,7 +11,7 @@ Create a new `EventTracker` instance, specifying which providers, trackers, and 
 ```javascript
 const tracker = EventTracker.create({
   providers: [
-    ['Tealium', { env: 'dev', account: 'rentpath', profile: 'rent.com' }]
+    ['Tealium', { env: 'dev', account: 'acme', profile: 'primary' }]
   ],
   trackers: [
     'Click',
