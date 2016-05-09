@@ -31,7 +31,7 @@ export default class ElementReducer {
     const atts = element.attributes
     const prefix = this.config.tagPrefix
     return Object.keys(atts).filter(key => (
-      atts[key] && atts[key].name.substr(0, prefix.length) === prefix
+      atts[key] && atts[key].name && atts[key].name.substr(0, prefix.length) === prefix
     )).reduce((obj, key) => {
       const tags = obj
       tags[atts[key].name.substr(prefix.length)] = atts[key].value
