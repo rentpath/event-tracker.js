@@ -158,6 +158,16 @@ Adds data collected from `data` tags placed on DOM nodes associated with native 
 
 ---
 
+#### `Event`
+Adds information extracted from event objects.
+
+##### Provided Data
+| Field | Description
+| --- | ---
+| x_coordinate | The mouse position relative to the left edge of the document for click events.
+| y_coordinate | The mouse position relative to the top edge of the document for click events.
+
+
 ## Development
 
 #### Scripts
