@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import EventReducer from '../../src/reducers/Event'
 
-describe('BrowserReducer', function() {
+describe('EventReducer', function() {
   before(function() {
     this.jsdom = require('jsdom-global')()
   })
