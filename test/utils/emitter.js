@@ -16,6 +16,13 @@ describe('utils/emitter', function() {
       this.subject.trigger('foo')
       expect(spy.called).to.be.true
     })
+
+    it('supports wildcard event names', function() {
+      const spy = sinon.spy()
+      this.subject.on('*', spy)
+      this.subject.trigger('foo')
+      expect(spy.called).to.be.true
+    })
   })
 
   describe('#off', function() {

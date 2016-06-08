@@ -10,22 +10,20 @@ export default function emitter(target) {
 
     off(event, fn) {
       if (container[event]) {
-        const listeners = container[event]
-        container[event] = []
-
-        listeners.forEach(listener => {
-          if (fn !== listener) {
-            container[event].push(listener)
-          }
-        })
+        container[event] = container[event].filter(cb => cb !== fn)
       }
       return this
     },
 
     trigger(event, ...args) {
-      if (container[event]) {
-        container[event].slice().forEach(fn => fn(...args))
+      let list = []
+      if (container['*']) {
+        list = list.concat(container['*'])
       }
+      if (container[event]) {
+        list = list.concat(container[event])
+      }
+      list.forEach(fn => fn(...args))
       return this
     }
   })

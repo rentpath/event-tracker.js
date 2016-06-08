@@ -48,6 +48,13 @@ describe('EventTracker', function() {
       this.tracker.track(null, { empty: '', null: null, undef: undefined })
       expect(this.spy.calledWith({})).to.be.true
     })
+
+    it('triggers an event with the name of the action', function() {
+      const spy = sinon.spy()
+      this.tracker.on('test', spy)
+      this.tracker.track('test')
+      expect(spy.called).to.be.true
+    })
   })
 
   describe('#view', function() {

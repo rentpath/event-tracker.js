@@ -17,13 +17,12 @@ export default class EventTracker {
 
   track(action, props) {
     const data = this._process(Object.assign({ action }, this._data, props))
-    this.trigger('track', data)
+    this.trigger(action, data)
     this.providers.forEach(provider => provider.track(data))
     return this
   }
 
   view(...args) {
-    this.trigger('view', ...args)
     return this.track('view', ...args)
   }
 
