@@ -13,6 +13,9 @@ describe('DeviceReducer', function() {
   beforeEach(function() {
     const reducer = new DeviceReducer()
     this.reduce = reducer.reduce.bind(reducer)
+    /* eslint-disable max-len */
+    reducer.parser.setUA('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36')
+    /* eslint-enable max-len */
   })
 
   describe('#reduce', function() {
@@ -26,6 +29,10 @@ describe('DeviceReducer', function() {
 
     it('assigns an operating system', function() {
       expect(this.reduce().operating_system).to.exist
+    })
+
+    it('assigns an operating system version', function() {
+      expect(this.reduce().operating_system_version).to.exist
     })
   })
 })
