@@ -34,5 +34,9 @@ describe('DeviceReducer', function() {
     it('assigns an operating system version', function() {
       expect(this.reduce().operating_system_version).to.exist
     })
+
+    it('only includes the major operating system version', function() {
+      expect(this.reduce().operating_system_version).to.eql('10')
+    })
   })
 })

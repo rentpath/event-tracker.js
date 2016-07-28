@@ -43,7 +43,7 @@ export default class DeviceReducer {
   }
 
   get operatingSystemVersion() {
-    return this.parser.getOS().version
+    return (this.parser.getOS().version || '').split('.')[0]
   }
 
   get defaults() {

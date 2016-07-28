@@ -27,6 +27,10 @@ describe('BrowserReducer', function() {
       expect(this.reduce().browser_version).to.exist
     })
 
+    it('only includes the major browser version', function() {
+      expect(this.reduce().browser_version).to.eql('47')
+    })
+
     it('assigns a browser size', function() {
       expect(this.reduce().browser_size).to.exist
     })

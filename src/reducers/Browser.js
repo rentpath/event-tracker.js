@@ -31,6 +31,6 @@ export default class BrowserReducer {
   }
 
   get browserVersion() {
-    return this.parser.getBrowser().version
+    return (this.parser.getBrowser().version || '').split('.')[0]
   }
 }
