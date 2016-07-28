@@ -3,6 +3,8 @@ import sanitize from './utils/sanitize'
 import initModule from './utils/initModule'
 import configurable from './utils/configurable'
 
+export const VIEW_ACTION = 'view'
+
 @emitter
 @configurable
 export default class EventTracker {
@@ -23,7 +25,7 @@ export default class EventTracker {
   }
 
   view(...args) {
-    return this.track('view', ...args)
+    return this.track(VIEW_ACTION, ...args)
   }
 
   include(data, merge = true) {
