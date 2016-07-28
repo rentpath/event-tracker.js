@@ -13,6 +13,9 @@ describe('BrowserReducer', function() {
   beforeEach(function() {
     const reducer = new BrowserReducer()
     this.reduce = reducer.reduce.bind(reducer)
+    /* eslint-disable max-len */
+    reducer.parser.setUA('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36')
+    /* eslint-enable max-len */
   })
 
   describe('#reduce', function() {
@@ -22,6 +25,10 @@ describe('BrowserReducer', function() {
 
     it('assigns a browser version', function() {
       expect(this.reduce().browser_version).to.exist
+    })
+
+    it('only includes the major browser version', function() {
+      expect(this.reduce().browser_version).to.eql('47')
     })
 
     it('assigns a browser size', function() {

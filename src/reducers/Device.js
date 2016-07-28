@@ -1,4 +1,4 @@
-import browserDetect from 'browser-detect'
+import Parser from 'ua-parser-js'
 
 export default class DeviceReducer {
   constructor(config) {
@@ -13,7 +13,8 @@ export default class DeviceReducer {
     return {
       screen_type: this.screenType,
       screen_resolution: this.screenResolution,
-      operating_system: this.operatingSystem
+      operating_system: this.operatingSystem,
+      operating_system_version: this.operatingSystemVersion
     }
   }
 
@@ -33,8 +34,16 @@ export default class DeviceReducer {
     ))
   }
 
+  get parser() {
+    return this._parser || (this._parser = new Parser())
+  }
+
   get operatingSystem() {
-    return browserDetect().OS
+    return this.parser.getOS().name
+  }
+
+  get operatingSystemVersion() {
+    return (this.parser.getOS().version || '').split('.')[0]
   }
 
   get defaults() {

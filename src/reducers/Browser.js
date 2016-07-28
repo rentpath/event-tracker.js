@@ -1,4 +1,4 @@
-import browserDetect from 'browser-detect'
+import Parser from 'ua-parser-js'
 
 export default class BrowserReducer {
   reduce(data = {}) {
@@ -7,7 +7,7 @@ export default class BrowserReducer {
 
   getData() {
     return {
-      browser: this.browser,
+      browser: this.browserName,
       browser_size: this.browserSize,
       browser_version: this.browserVersion
     }
@@ -17,8 +17,13 @@ export default class BrowserReducer {
     return this._data || (this._data = this.getData())
   }
 
-  get browser() {
-    return browserDetect().browser
+
+  get parser() {
+    return this._parser || (this._parser = new Parser())
+  }
+
+  get browserName() {
+    return this.parser.getBrowser().name
   }
 
   get browserSize() {
@@ -26,6 +31,6 @@ export default class BrowserReducer {
   }
 
   get browserVersion() {
-    return browserDetect().version
+    return (this.parser.getBrowser().version || '').split('.')[0]
   }
 }
