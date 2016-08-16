@@ -58,7 +58,7 @@ export default class ElementReducer {
 
   getAtts(element) {
     const atts = {}
-    const href = element.getAttribute('href')
+    const href = element.getAttribute && element.getAttribute('href')
     if (href && !href.match(/^(?:javascript|#)/)) {
       atts.href = href
     }

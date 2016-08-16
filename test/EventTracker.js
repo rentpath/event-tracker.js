@@ -1,6 +1,7 @@
 import sinon from 'sinon'
 import { expect } from 'chai'
 import EventTracker from '../src/EventTracker'
+import { VIEW_ACTION } from '../src/const'
 
 describe('EventTracker', function() {
   class Provider {
@@ -60,12 +61,12 @@ describe('EventTracker', function() {
   describe('#view', function() {
     it('calls the track method on providers with a action of `view`', function() {
       this.tracker.view()
-      expect(this.spy.calledWith({ action: 'view' })).to.be.true
+      expect(this.spy.calledWith({ action: VIEW_ACTION })).to.be.true
     })
 
     it('passes along all method arguments', function() {
       this.tracker.view({ foo: 'bar' })
-      expect(this.spy.calledWith({ action: 'view', foo: 'bar' })).to.be.true
+      expect(this.spy.calledWith({ action: VIEW_ACTION, foo: 'bar' })).to.be.true
     })
   })
 

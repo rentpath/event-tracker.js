@@ -2,8 +2,7 @@ import emitter from './utils/emitter'
 import sanitize from './utils/sanitize'
 import initModule from './utils/initModule'
 import configurable from './utils/configurable'
-
-export const VIEW_ACTION = 'view'
+import { VIEW_ACTION } from './const'
 
 @emitter
 @configurable
