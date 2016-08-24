@@ -19,7 +19,7 @@ export default class ElementReducer {
 
   getStack(element) {
     const stack = []
-    let node = element
+    let node = element.correspondingElement || element
     while (node) {
       stack.push(node)
       node = node.parentNode
@@ -58,7 +58,7 @@ export default class ElementReducer {
 
   getAtts(element) {
     const atts = {}
-    const href = element.getAttribute && element.getAttribute('href')
+    const href = element.getAttribute('href')
     if (href && !href.match(/^(?:javascript|#)/)) {
       atts.href = href
     }

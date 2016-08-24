@@ -20,6 +20,16 @@ describe('ElementReducer', function() {
   beforeEach(function() {
     const reducer = new ElementReducer()
     this.reduce = reducer.reduce.bind(reducer)
+    this.getStack = reducer.getStack.bind(reducer)
+  })
+
+  describe('#getStack', function() {
+    it('handles objects like SVGElementInstance', function() {
+      const svgElementInstance = { correspondingElement: document.getElementById('path') }
+      const result = this.getStack(svgElementInstance)
+      expect(result.length).to.equal(6)
+      expect(result[5]).to.equal(svgElementInstance.correspondingElement)
+    })
   })
 
   describe('#reduce', function() {
