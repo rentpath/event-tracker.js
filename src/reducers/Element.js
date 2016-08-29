@@ -75,7 +75,7 @@ export default class ElementReducer {
 
   get defaults() {
     return {
-      tagPrefix: 'data-tag_'
+      tagPrefix: 'data-tag_',
     }
   }
 }

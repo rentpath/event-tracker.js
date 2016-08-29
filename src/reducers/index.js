@@ -13,5 +13,5 @@ export default {
   Meta,
   Request,
   Session,
-  Event
+  Event,
 }

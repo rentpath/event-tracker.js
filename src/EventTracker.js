@@ -57,7 +57,7 @@ export default class EventTracker {
     return {
       providers: [],
       trackers: [],
-      reducers: []
+      reducers: [],
     }
   }
 }

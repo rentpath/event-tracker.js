@@ -5,7 +5,7 @@ export default class EventReducer {
     }
     return Object.assign(data, {
       x_coordinate: data.event.pageX,
-      y_coordinate: data.event.pageY
+      y_coordinate: data.event.pageY,
     })
   }
 }

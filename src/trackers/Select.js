@@ -4,8 +4,8 @@ export default class SelectTracker extends EventTracker {
   get defaults() {
     return {
       events: {
-        change: 'select'
-      }
+        change: 'select',
+      },
     }
   }
 }

@@ -14,7 +14,7 @@ export default class DeviceReducer {
       screen_type: this.screenType,
       screen_resolution: this.screenResolution,
       operating_system: this.operatingSystem,
-      operating_system_version: this.operatingSystemVersion
+      operating_system_version: this.operatingSystemVersion,
     }
   }
 
@@ -51,8 +51,8 @@ export default class DeviceReducer {
       breakpoints: {
         smartphone: 0,
         tablet: 768,
-        desktop: 1024
-      }
+        desktop: 1024,
+      },
     }
   }
 }

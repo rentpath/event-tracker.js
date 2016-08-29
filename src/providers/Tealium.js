@@ -43,7 +43,7 @@ export default class Tealium {
     return Object.assign(script, {
       src: this.url,
       type: 'text/javascript',
-      async: true
+      async: true,
     })
   }
 
@@ -51,7 +51,7 @@ export default class Tealium {
     return {
       env: 'dev',
       account: undefined,
-      profile: undefined
+      profile: undefined,
     }
   }
 }

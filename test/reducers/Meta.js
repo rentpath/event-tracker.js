@@ -6,7 +6,7 @@ describe('MetaReducer', function() {
     this.jsdom = require('jsdom-global')()
     const meta = [
       { name: 'foo', content: 'bar' },
-      { name: 'bar', content: 'baz', className: 'bar' }
+      { name: 'bar', content: 'baz', className: 'bar' },
     ]
     meta.forEach(props => {
       const tag = Object.assign(document.createElement('meta'), props)

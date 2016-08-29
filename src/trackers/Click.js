@@ -4,8 +4,8 @@ export default class ClickTracker extends EventTracker {
   get defaults() {
     return {
       events: {
-        click: 'click'
-      }
+        click: 'click',
+      },
     }
   }
 }
