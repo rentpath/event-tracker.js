@@ -16,7 +16,7 @@ export default class SessionReducer {
   setCookie(name, value, options) {
     document.cookie = cookie.serialize(name, value, Object.assign({
       domain: `.${window.location.host}`,
-      path: '/'
+      path: '/',
     }, options))
   }
 
@@ -25,7 +25,7 @@ export default class SessionReducer {
       sessionKey,
       sessionAge,
       visitorKey,
-      visitorAge
+      visitorAge,
     } = this.config
 
     const cookies = cookie.parse(document.cookie)
@@ -35,16 +35,16 @@ export default class SessionReducer {
     const timestamp = new Date().getTime()
 
     this.setCookie(visitorKey, visitorId, {
-      expires: visitorAge ? new Date(timestamp + visitorAge) : null
+      expires: visitorAge ? new Date(timestamp + visitorAge) : null,
     })
     this.setCookie(sessionKey, sessionId, {
-      expires: sessionAge ? new Date(timestamp + sessionAge) : null
+      expires: sessionAge ? new Date(timestamp + sessionAge) : null,
     })
 
     return {
       visit_id: `${visitorId}.${sessionId}`,
       visitor_id: visitorId,
-      session_id: sessionId
+      session_id: sessionId,
     }
   }
 
@@ -57,7 +57,7 @@ export default class SessionReducer {
       visitorKey: 'rp_visitor_id',
       sessionKey: 'rp_session_id',
       visitorAge: 86400 * 365 * 5 * 1000, // 5 years
-      sessionAge: 30 * 60 * 1000 // 30 minutes
+      sessionAge: 30 * 60 * 1000, // 30 minutes
     }
   }
 }

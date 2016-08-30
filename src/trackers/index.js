@@ -7,5 +7,5 @@ export default {
   Click,
   Event,
   Select,
-  View
+  View,
 }

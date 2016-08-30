@@ -14,7 +14,7 @@ export default class RequestReducer {
       path: req.pathname,
       hash: req.hash.substr(1),
       domain: req.hostname,
-      query_string: req.search.substr(1)
+      query_string: req.search.substr(1),
     }
   }
 }

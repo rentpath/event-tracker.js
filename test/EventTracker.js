@@ -25,7 +25,7 @@ describe('EventTracker', function() {
   beforeEach(function() {
     this.spy = sinon.spy()
     this.tracker = new EventTracker({
-      providers: [[Provider, { spy: this.spy }]]
+      providers: [[Provider, { spy: this.spy }]],
     })
   })
 

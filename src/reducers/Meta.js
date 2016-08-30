@@ -23,7 +23,7 @@ export default class MetaReducer {
 
   get defaults() {
     return {
-      filter: null
+      filter: null,
     }
   }
 }

@@ -9,7 +9,7 @@ export default class BrowserReducer {
     return {
       browser: this.browserName,
       browser_size: this.browserSize,
-      browser_version: this.browserVersion
+      browser_version: this.browserVersion,
     }
   }
 

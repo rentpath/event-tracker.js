@@ -25,6 +25,6 @@ export default function emitter(target) {
       }
       list.forEach(fn => fn(...args))
       return this
-    }
+    },
   })
 }

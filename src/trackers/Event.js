@@ -20,7 +20,7 @@ export default class EventTracker {
 
   get defaults() {
     return {
-      events: {}
+      events: {},
     }
   }
 }
