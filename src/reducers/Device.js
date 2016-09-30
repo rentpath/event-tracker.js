@@ -27,11 +27,8 @@ export default class DeviceReducer {
   }
 
   get screenType() {
-    const screenWidth = window.innerWidth
-    const breakpoints = this.config.breakpoints
-    return Object.keys(breakpoints).reduce((prev, name) => (
-      screenWidth >= breakpoints[name] ? name : prev
-    ))
+    const type = this.parser.getDevice().type
+    return this.config.enabledTypes[type] ? type : this.config.defaultType
   }
 
   get parser() {
@@ -48,10 +45,11 @@ export default class DeviceReducer {
 
   get defaults() {
     return {
-      breakpoints: {
-        smartphone: 0,
-        tablet: 768,
-        desktop: 1024,
+      defaultType: 'desktop',
+      enabledTypes: {
+        desktop: true,
+        mobile: true,
+        tablet: true,
       },
     }
   }
