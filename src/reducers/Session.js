@@ -3,6 +3,7 @@ import cookie from 'cookie'
 export default class SessionReducer {
   constructor(config = {}) {
     this.config = Object.assign(this.defaults, config)
+    this.data = this.getData()
   }
 
   reduce(data = {}) {
@@ -46,10 +47,6 @@ export default class SessionReducer {
       visitor_id: visitorId,
       session_id: sessionId,
     }
-  }
-
-  get data() {
-    return this._data || (this._data = this.getData())
   }
 
   get defaults() {
