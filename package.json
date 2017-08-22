@@ -17,15 +17,13 @@
     "clean": "rm -rf lib",
     "compile": "babel -d lib src",
     "compile:watch": "npm run compile -- --watch",
-    "compile:bundle": "webpack --config webpack.config.js",
-    "compile:dist": "npm run compile && npm run compile:bundle",
     "lint": "eslint src test",
     "lint:fix": "npm run lint -- --fix",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm run test -- --watch",
     "test:cov": "babel-node $(npm bin)/istanbul cover $(npm bin)/_mocha -- --recursive",
     "preversion": "npm run lint && npm test",
-    "version": "npm run compile:dist && node bin/version-bower && git add -A",
+    "version": "npm run compile && git add -A",
     "postversion": "git push --follow-tags"
   },
   "devDependencies": {
