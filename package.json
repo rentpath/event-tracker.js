@@ -1,6 +1,6 @@
 {
   "version": "4.0.0",
-  "name": "event-tracker",
+  "name": "@rentpath/event-tracker",
   "description": "Capture and deliver user events.",
   "license": "MIT",
   "author": "Ari Bouius <abouius@rentpath.com>",
