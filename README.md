@@ -25,25 +25,25 @@ const tracker = EventTracker.create({
 ```
 
 ## API
-#####EventTracker.create(config)
+#### EventTracker.create(config)
 Creates a new tracker instance.
 ```javascript
 const tracker = EventTracker.create({ ... })
 ```
 
-#####tracker.track(action, [props])
+#### tracker.track(action, [props])
 Records a custom user action.
 ```javascript
 tracker.track('user_registration', { userId: 123 })
 ```
 
-#####tracker.view([props])
+#### tracker.view([props])
 Records a page view action.
 ```javascript
 tracker.view({ page: 'home' })
 ```
 
-#####tracker.include(props, merge = true)
+#### tracker.include(props, merge = true)
 Attaches additional data to every subsequent tracking event.  Data is merged by default if called multiple times, unless the `merge` argument is false, in which case any existing data is overwritten. *Note: data does not persist between separate page loads.*
 ```javascript
 tracker.include({ browser: 'Chrome' })
