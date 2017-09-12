@@ -12,10 +12,4 @@ export default class FocusTracker {
   addListener() {
     document.addEventListener('focus', event => this.track('focus', { event }), { capture: true })
   }
-
-  get defaults() {
-    return {
-      events: {},
-    }
-  }
 }
