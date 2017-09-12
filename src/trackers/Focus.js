@@ -1,11 +1,21 @@
-import EventTracker from './Event'
+export default class FocusTracker {
+  constructor(config, tracker) {
+    this.config = { ...config }
+    this.tracker = tracker
+    this.addListener()
+  }
 
-export default class FocusTracker extends EventTracker {
+  track(...args) {
+    this.tracker.track(...args)
+  }
+
+  addListener() {
+    document.addEventListener('focus', event => this.track('focus', { event }), { capture: true })
+  }
+
   get defaults() {
     return {
-      events: {
-        focus: 'focus',
-      },
+      events: {},
     }
   }
 }
