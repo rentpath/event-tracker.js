@@ -13,8 +13,31 @@ describe('FocusTracker', function() {
     this.jsdom()
   })
 
-  it('triggers an action for focus events', function() {
-    document.dispatchEvent(new Event('focus'))
+  it('triggers a focus action for input elements', function() {
+    const event = new Event('focus')
+    Object.defineProperty(event, 'target', { value: { nodeName: 'INPUT' } })
+    document.dispatchEvent(event)
     expect(this.spy.called).to.be.true
+  })
+
+  it('triggers a focus action for select elements', function() {
+    const event = new Event('focus')
+    Object.defineProperty(event, 'target', { value: { nodeName: 'SELECT' } })
+    document.dispatchEvent(event)
+    expect(this.spy.called).to.be.true
+  })
+
+  it('triggers a focus action for textarea elements', function() {
+    const event = new Event('focus')
+    Object.defineProperty(event, 'target', { value: { nodeName: 'TEXTAREA' } })
+    document.dispatchEvent(event)
+    expect(this.spy.called).to.be.true
+  })
+
+  it('does not trigger a focus action for anchor elements', function() {
+    const event = new Event('focus')
+    Object.defineProperty(event, 'target', { value: { nodeName: 'A' } })
+    document.dispatchEvent(event)
+    expect(this.spy.called).to.be.false
   })
 })
