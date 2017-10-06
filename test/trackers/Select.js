@@ -13,8 +13,24 @@ describe('SelectTracker', function() {
     this.jsdom()
   })
 
-  it('triggers an action for change events', function() {
-    document.dispatchEvent(new Event('change'))
+  it('triggers a select action for select elements', function() {
+    const event = new Event('change')
+    Object.defineProperty(event, 'target', { value: { nodeName: 'SELECT' } })
+    document.dispatchEvent(event)
     expect(this.spy.called).to.be.true
+  })
+
+  it('triggers a select action for option elements', function() {
+    const event = new Event('change')
+    Object.defineProperty(event, 'target', { value: { nodeName: 'OPTION' } })
+    document.dispatchEvent(event)
+    expect(this.spy.called).to.be.true
+  })
+
+  it('does not trigger a select action for input elements', function() {
+    const event = new Event('change')
+    Object.defineProperty(event, 'target', { value: { nodeName: 'INPUT' } })
+    document.dispatchEvent(event)
+    expect(this.spy.called).to.be.false
   })
 })

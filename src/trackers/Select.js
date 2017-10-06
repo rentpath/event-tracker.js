@@ -8,4 +8,14 @@ export default class SelectTracker extends EventTracker {
       },
     }
   }
+
+  canTrack(node) {
+    return node && !!(~['SELECT', 'OPTION'].indexOf(node.nodeName))
+  }
+
+  track(action, { event }) {
+    if (this.canTrack(event.target)) {
+      this.tracker.track(action, { event })
+    }
+  }
 }
