@@ -10,6 +10,7 @@ export default class SelectTracker extends EventTracker {
   }
 
   canTrack(node) {
+    // eslint-disable-next-line no-bitwise
     return node && !!(~['SELECT', 'OPTION'].indexOf(node.nodeName))
   }
 

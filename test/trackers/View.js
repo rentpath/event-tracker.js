@@ -1,7 +1,7 @@
 import sinon from 'sinon'
 import { expect } from 'chai'
-import ViewTracker from '../../src/trackers/View'
 import jsdom from 'jsdom-global'
+import ViewTracker from '../../src/trackers/View'
 
 describe('ViewTracker', function() {
   beforeEach(function() {

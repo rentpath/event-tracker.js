@@ -17,6 +17,7 @@ export default function emitter(target) {
 
     trigger(event, ...args) {
       let list = []
+
       if (container['*']) {
         list = list.concat(container['*'])
       }

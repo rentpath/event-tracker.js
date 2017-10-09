@@ -1,7 +1,25 @@
 {
-  "extends": "rentpath",
+  "extends": "@rentpath/eslint-config-rentpath",
   "parser": "babel-eslint",
+  "rules": {
+    "global-require": 0,
+    "prefer-arrow-callback": 0,
+    "no-unused-expressions": 0
+  },
+  "plugins": [
+    "babel"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src", "test"]
+      }
+    }
+  },
   "env": {
-    "node": true
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "mocha": true,
   }
 }

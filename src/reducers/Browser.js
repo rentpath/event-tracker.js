@@ -14,12 +14,13 @@ export default class BrowserReducer {
   }
 
   get data() {
-    return this._data || (this._data = this.getData())
+    const data = this._data || (this._data = this.getData())
+    return data
   }
 
-
   get parser() {
-    return this._parser || (this._parser = new Parser())
+    const parser = this._parser || (this._parser = new Parser())
+    return parser
   }
 
   get browserName() {

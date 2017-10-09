@@ -18,7 +18,8 @@ export default class MetaReducer {
   }
 
   get data() {
-    return this._data || (this._data = this.getData())
+    const data = this._data || (this._data = this.getData())
+    return data
   }
 
   get defaults() {

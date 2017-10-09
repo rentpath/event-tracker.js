@@ -11,6 +11,7 @@ export default class FocusTracker {
   }
 
   canTrack(node) {
+    // eslint-disable-next-line no-bitwise
     return node && !!(~['INPUT', 'TEXTAREA', 'SELECT'].indexOf(node.nodeName))
   }
 

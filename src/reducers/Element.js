@@ -5,6 +5,7 @@ export default class ElementReducer {
 
   reduce(data = {}) {
     const node = data.element || (data.event && data.event.target)
+
     if (node) {
       Object.assign(data, this.getData(node))
     }
@@ -20,6 +21,7 @@ export default class ElementReducer {
   getStack(element) {
     const stack = []
     let node = element.correspondingElement || element
+
     while (node) {
       stack.push(node)
       node = node.parentNode
@@ -30,6 +32,7 @@ export default class ElementReducer {
   getTags(element) {
     const atts = element.attributes
     const prefix = this.config.tagPrefix
+
     return Object.keys(atts).filter(key => (
       atts[key] && atts[key].name && atts[key].name.substr(0, prefix.length) === prefix
     )).reduce((obj, key) => {
@@ -41,9 +44,11 @@ export default class ElementReducer {
 
   getInfo(element) {
     const info = {}
+
     if (element.src) {
       info.image = element.src
     }
+
     if (this.isInput(element)) {
       if (this.isSelect(element)) {
         const node = element.options[element.selectedIndex]
@@ -59,6 +64,7 @@ export default class ElementReducer {
   getAtts(element) {
     const atts = {}
     const href = element.getAttribute('href')
+
     if (href && !href.match(/^(?:javascript|#)/)) {
       atts.href = href
     }
@@ -66,6 +72,7 @@ export default class ElementReducer {
   }
 
   isInput(node) {
+    // eslint-disable-next-line no-bitwise
     return ~['INPUT', 'TEXTAREA', 'SELECT'].indexOf(node.nodeName)
   }
 
