@@ -72,7 +72,6 @@ export default class ElementReducer {
   }
 
   isInput(node) {
-    // eslint-disable-next-line no-bitwise
     return ~['INPUT', 'TEXTAREA', 'SELECT'].indexOf(node.nodeName)
   }
 
