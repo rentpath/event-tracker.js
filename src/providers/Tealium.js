@@ -13,7 +13,8 @@ export default class Tealium {
   }
 
   get queue() {
-    return this._queue || (this._queue = [])
+    const queue = this._queue || (this._queue = [])
+    return queue
   }
 
   track(data) {
@@ -32,6 +33,7 @@ export default class Tealium {
   onLoad() {
     this.track = data => this.deliver(data)
     const { queue } = this
+
     while (queue.length) {
       this.track(queue.pop())
     }

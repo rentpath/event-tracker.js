@@ -28,7 +28,7 @@ export default class EventTracker {
   }
 
   include(data, merge = true) {
-    this._data = Object.assign(merge && this._data || {}, data)
+    this._data = Object.assign((merge && this._data) || {}, data)
     return this
   }
 

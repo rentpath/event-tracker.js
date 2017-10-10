@@ -9,6 +9,7 @@ export default function initModule(type, name, ...args) {
   const [item, config] = parts
 
   let Module = item
+
   if (typeof Module === 'string') {
     Module = map[type] && map[type][item]
     if (!Module) throw new Error(`Unable to find module "${item}"`)

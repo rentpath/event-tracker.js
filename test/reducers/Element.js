@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { expect } from 'chai'
-import ElementReducer from '../../src/reducers/Element.js'
+import ElementReducer from '../../src/reducers/Element'
 
 function getElement(id) {
   return { element: document.getElementById(id) }
