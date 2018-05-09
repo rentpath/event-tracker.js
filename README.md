@@ -66,6 +66,17 @@ Providers are 3rd party tag analytics services that offer custom event tracking,
 | `account` | string | `undefined` | The TealiumIQ account name.
 | `profile` | string | `undefined` | The TealiumIQ profile name.
 
+#### `GoogleTagManager`
+[GoogleTagManager](https://developers.google.com/tag-manager/) is a real-time data platform and tag management service.
+
+##### Options
+| Option | Type | Default | Description         |
+| --- | --- | --- | ---
+| `gtmId` | string | `undefined` | Tag Manager Id.
+| `dataLayer` | object | `{}` | Default dataLayer values
+| `auth` | string | `undefined` | authentication for the container
+| `preview` | string | `undefined` | preview id for the container
+
 ---
 
 ### Trackers
@@ -155,6 +166,9 @@ Adds data collected from `data` tags placed on DOM nodes associated with native 
 | Option | Type | Default | Description         |
 | --- | --- | --- | ---
 | `tagPrefix` | string | `data-tag_` | The beginning part of the node attribute used to extract data.
+
+#### `TagManagerEvent`
+Adds data collected from `data` tags and transforms to GTM specific KVP's (e.g. `click` events).
 
 ---
 

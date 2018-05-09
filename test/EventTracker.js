@@ -12,6 +12,14 @@ describe('EventTracker', function() {
     track(...args) {
       this.spy(...args)
     }
+
+    loadWithData(...args) {
+      this.spy(...args)
+    }
+
+    reset(...args) {
+      this.spy(...args)
+    }
   }
 
   before(function() {
@@ -32,6 +40,11 @@ describe('EventTracker', function() {
   describe('#track', function() {
     it('calls the track method on providers', function() {
       this.tracker.track()
+      expect(this.spy.called).to.be.true
+    })
+
+    it('calls the reset method on providers', function() {
+      this.tracker.reset()
       expect(this.spy.called).to.be.true
     })
 
