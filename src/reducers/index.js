@@ -5,6 +5,7 @@ import Meta from './Meta'
 import Request from './Request'
 import Session from './Session'
 import Event from './Event'
+import TagManagerEvent from './TagManagerEvent'
 
 export default {
   Browser,
@@ -14,4 +15,5 @@ export default {
   Request,
   Session,
   Event,
+  TagManagerEvent,
 }
