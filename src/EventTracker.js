@@ -23,10 +23,6 @@ export default class EventTracker {
     return this
   }
 
-  reset() {
-    this.providers.forEach(provider => { if (typeof provider.reset === 'function') provider.reset() })
-  }
-
   view(...args) {
     return this.track(VIEW_ACTION, ...args)
   }
@@ -55,7 +51,6 @@ export default class EventTracker {
         prev.concat(initModule(group, name, this))
       ), [])
     })
-    this.providers.forEach(provider => { if (typeof provider.loadWithData === 'function') provider.loadWithData(this.reducers) })
   }
 
   get defaults() {

@@ -41,12 +41,10 @@ export default class SessionReducer {
     this.setCookie(sessionKey, sessionId, {
       expires: sessionAge ? new Date(timestamp + sessionAge) : null,
     })
-    // TODO: visit_id and visitor_id are going away after we transition away from Tealium
+
     return {
       visit_id: `${visitorId}.${sessionId}`,
       visitor_id: visitorId,
-      visit: `${visitorId}.${sessionId}`,
-      visitor: visitorId,
       session_id: sessionId,
     }
   }
