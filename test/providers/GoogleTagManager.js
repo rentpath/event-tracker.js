@@ -36,7 +36,7 @@ describe('GoogleTagManager', function() {
       const gtm = new GoogleTagManager(config)
       gtm.loadWithData()
       expect(document.getElementsByTagName('script')[0].src).to
-      .equal('//www.googletagmanager.com/gtm.js?id=test&gtm_auth=&gtm_preview=env-test&gtm_cookies_win=x')
+      .equal('https://www.googletagmanager.com/gtm.js?id=test&gtm_auth=&gtm_preview=env-test&gtm_cookies_win=x')
     })
   })
 })
