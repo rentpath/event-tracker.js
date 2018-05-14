@@ -10,7 +10,7 @@ export default class GoogleTagManager {
 
   get url() {
     const { gtmAuth, gtmPreview, gtmId } = this.config
-    return `//www.googletagmanager.com/gtm.js?id=${gtmId}&gtm_auth=${gtmAuth}&gtm_preview=${gtmPreview}&gtm_cookies_win=x`
+    return `https://www.googletagmanager.com/gtm.js?id=${gtmId}&gtm_auth=${gtmAuth}&gtm_preview=${gtmPreview}&gtm_cookies_win=x`
   }
 
   reset() {
