@@ -15,7 +15,10 @@ export default class GoogleTagManager {
 
   reset() {
     const { gtmId } = this.config
-    window.google_tag_manager[gtmId].dataLayer.reset()
+
+    if (window.google_tag_manager && window.google_tag_manager[gtmId]) {
+      window.google_tag_manager[gtmId].dataLayer.reset()
+    }
   }
 
   track(data) {
