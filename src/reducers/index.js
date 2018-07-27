@@ -6,6 +6,7 @@ import Request from './Request'
 import Session from './Session'
 import Event from './Event'
 import TagManagerEvent from './TagManagerEvent'
+import Ecommerce from './Ecommerce'
 
 export default {
   Browser,
@@ -16,4 +17,5 @@ export default {
   Session,
   Event,
   TagManagerEvent,
+  Ecommerce,
 }
