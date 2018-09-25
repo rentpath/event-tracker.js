@@ -69,6 +69,13 @@ describe('EventTracker', function() {
       this.tracker.track('test')
       expect(spy.called).to.be.true
     })
+
+    it('does not trigger an event due to ignore override', function() {
+      const spy = sinon.spy()
+      this.tracker.on('test', spy)
+      this.tracker.track('test', { action: 'ignore' })
+      expect(spy.called).to.be.false
+    })
   })
 
   describe('#view', function() {
