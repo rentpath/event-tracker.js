@@ -2,7 +2,10 @@ import emitter from './utils/emitter'
 import sanitize from './utils/sanitize'
 import initModule from './utils/initModule'
 import configurable from './utils/configurable'
-import { VIEW_ACTION } from './const'
+import {
+  IGNORE_ACTION,
+  VIEW_ACTION,
+} from './const'
 
 @emitter
 @configurable
@@ -18,6 +21,14 @@ export default class EventTracker {
 
   track(action, props) {
     const data = this._process(Object.assign({ action }, this._data, props))
+
+    // Do not track if the event has been marked to be ignored.
+    // This should be used only when you are manually calling the track function
+    // instead of relying on the automatic click tracking.
+    if (data.action === IGNORE_ACTION) {
+      return this
+    }
+
     this.trigger(action, data)
     this.providers.forEach(provider => provider.track(data))
     return this
