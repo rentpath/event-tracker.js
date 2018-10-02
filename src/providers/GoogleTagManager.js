@@ -22,7 +22,27 @@ export default class GoogleTagManager {
   }
 
   track(data) {
-    window.dataLayer.push(data)
+    const { trackCallback, trackTimeout } = this.config
+
+    const newData = { ...data }
+
+    if (trackCallback) {
+      // If you specify eventCallback in the data layer,
+      // GTM will call the function when the tracking call has completed
+      newData.eventCallback = () => {
+        // Pass the data back so trackCallback will know what tagging was requested
+        trackCallback(data)
+      }
+    }
+
+    if (trackTimeout) {
+      // If you specify eventTimeout in the data layer,
+      // GTM will call eventCallback even if the tracking call fails
+      // (for example, if the browser blocks the GTM call)
+      newData.eventTimeout = trackTimeout
+    }
+
+    window.dataLayer.push(newData)
   }
 
   loadWithData(reducerModules) {
