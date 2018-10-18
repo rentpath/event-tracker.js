@@ -18,13 +18,19 @@ export default class EcommerceReducer {
     if (window.sessionStorage) window.sessionStorage.setItem(key, value)
   }
 
-  adjustedTotal(selection, screenType, campaignId, revenue) {
-    let factor = 1
-
+  calculateFactor(campaignId, selection, screenType) {
     if (selection === 'email' && screenType === 'desktop') {
-      factor = 2
-      if (campaignId) factor = 1.75
+      if (campaignId && this.config.multiplierMatrix) {
+        return this.config.multiplierMatrix()
+      } else if (campaignId) {
+        return 1.75
+      }
+      return 2
     }
+    return 1
+  }
+
+  adjustedTotal(factor, revenue) {
     return revenue && !isNaN(revenue) ? (parseFloat(revenue) * factor)
       : revenue
   }
@@ -44,8 +50,8 @@ export default class EcommerceReducer {
     const selection = data.selection
     const transactionId = this.requestId()
     const uniqueSubmission = this.getStorageData(`${sessionId}_${listingId}`) ? 'false' : 'true'
-    const transactionAdjustedTotal = this.adjustedTotal(selection,
-      data.screen_type, cookies[campaignKey], revenue)
+    const factor = this.calculateFactor(cookies[campaignKey], selection, data.screen_type)
+    const transactionAdjustedTotal = this.adjustedTotal(factor, revenue)
     this.setStorageData(`${sessionId}_${listingId}`, true)
 
     return Object.assign(data, {
