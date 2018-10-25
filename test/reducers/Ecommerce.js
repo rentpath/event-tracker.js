@@ -120,10 +120,13 @@ describe('EcommerceReducer', function() {
       }
       expect(reducer.reduce(data)).to.eql(expected)
     })
-    it('checks transactionAdjustedTotal is 1.75 times of transactionTotal for desktop email lead with campaign_id', function() {
+    it('checks transactionAdjustedTotal is 1.75 times of transactionTotal for desktop email lead with campaign_id without a supplied multiplierMatrix', function() {
       document.cookie = 'rp_session_id=abc'
       document.cookie = 'campaign_id=12345'
-      const reducer = new EcommerceReducer()
+      const config = {
+        multiplierMatrix: undefined,
+      }
+      const reducer = new EcommerceReducer(config)
       const data = {
         action: 'lead_submission',
         listing_id: '1234',
@@ -147,6 +150,24 @@ describe('EcommerceReducer', function() {
       }]`,
       }
       expect(reducer.reduce(data)).to.eql(expected)
+    })
+    it('checks if the multiplierMatrix function supplied, it is called to determine the factor for desktop email leads with a campaign_id', function() {
+      document.cookie = 'rp_session_id=abc'
+      document.cookie = 'campaign_id=12345'
+      const spy = sinon.spy()
+      const config = {
+        multiplierMatrix: spy,
+      }
+      const reducer = new EcommerceReducer(config)
+      const data = {
+        action: 'lead_submission',
+        listing_id: '1234',
+        selection: 'email',
+        revenue: '20',
+        screen_type: 'desktop',
+      }
+      reducer.reduce(data)
+      expect(spy.called).to.be.true
     })
     it('checks transactionAdjustedTotal is same as transactionTotal for desktop phone leads', function() {
       document.cookie = 'rp_session_id=abc'
