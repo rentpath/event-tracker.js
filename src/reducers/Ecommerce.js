@@ -1,4 +1,7 @@
 import cookie from 'cookie'
+import getOr from 'lodash/fp/getOr'
+
+const DEFAULT_CAMPAIGN_FACTOR = 1.75
 
 export default class EcommerceReducer {
 
@@ -18,12 +21,17 @@ export default class EcommerceReducer {
     if (window.sessionStorage) window.sessionStorage.setItem(key, value)
   }
 
+  multiplierMatrix() {
+    const today = new Date()
+    return getOr(DEFAULT_CAMPAIGN_FACTOR, `${today.getDay()}[${today.getHours()}]`)(this.config.multiplierMatrix)
+  }
+
   calculateFactor(campaignId, selection, screenType) {
     if (selection === 'email' && screenType === 'desktop') {
-      if (campaignId && this.config.multiplierMatrix) {
-        return this.config.multiplierMatrix()
+      if (campaignId && this.config.multiplierMatrix && this.config.multiplierMatrix.length > 0) {
+        return this.multiplierMatrix()
       } else if (campaignId) {
-        return 1.75
+        return DEFAULT_CAMPAIGN_FACTOR
       }
       return 2
     }
