@@ -151,12 +151,12 @@ describe('EcommerceReducer', function() {
       }
       expect(reducer.reduce(data)).to.eql(expected)
     })
-    it('checks if the multiplierMatrix function supplied, it is called to determine the factor for desktop email leads with a campaign_id', function() {
+    it('checks if the multiplierMatrix supplied, it is called to determine the factor for desktop email leads with a campaign_id', function() {
       document.cookie = 'rp_session_id=abc'
       document.cookie = 'campaign_id=12345'
-      const spy = sinon.spy()
+      // creates a matrix representing seven days with 24 hours filled with 2s
       const config = {
-        multiplierMatrix: spy,
+        multiplierMatrix: Array(7).fill(Array(24).fill(2)),
       }
       const reducer = new EcommerceReducer(config)
       const data = {
@@ -166,8 +166,22 @@ describe('EcommerceReducer', function() {
         revenue: '20',
         screen_type: 'desktop',
       }
-      reducer.reduce(data)
-      expect(spy.called).to.be.true
+      const expected = {
+        ...data,
+        transactionAdjustedTotal: 40,
+        transactionAffiliation: 'email',
+        transactionId: '123',
+        transactionTotal: '20',
+        uniqueSubmission: 'true',
+        transactionProducts: `[{
+        sku: 1234,
+        name: 1234,
+        category: email,
+        price: 20,
+        quantity: 1,
+      }]`,
+      }
+      expect(reducer.reduce(data)).to.eql(expected)
     })
     it('checks transactionAdjustedTotal is same as transactionTotal for desktop phone leads', function() {
       document.cookie = 'rp_session_id=abc'
