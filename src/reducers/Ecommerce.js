@@ -1,5 +1,4 @@
 import cookie from 'cookie'
-import getOr from 'lodash/fp/getOr'
 
 const DEFAULT_CAMPAIGN_FACTOR = 1.75
 
@@ -23,7 +22,12 @@ export default class EcommerceReducer {
 
   multiplierMatrix() {
     const today = new Date()
-    return getOr(DEFAULT_CAMPAIGN_FACTOR, `${today.getDay()}[${today.getHours()}]`)(this.config.multiplierMatrix)
+    const dayOfWeek = today.getDay()
+    return (
+      this.config.multiplierMatrix &&
+      this.config.multiplierMatrix[dayOfWeek] &&
+      this.config.multiplierMatrix[dayOfWeek][today.getHours()]
+    ) || DEFAULT_CAMPAIGN_FACTOR
   }
 
   calculateFactor(campaignId, selection, screenType) {
