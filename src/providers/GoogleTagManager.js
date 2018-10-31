@@ -25,7 +25,6 @@ export default class GoogleTagManager {
     const { trackCallback, trackTimeout } = this.config
 
     const newData = { ...data }
-    let initialPageview = 1
 
     if (trackCallback) {
       // If you specify eventCallback in the data layer,
@@ -43,40 +42,7 @@ export default class GoogleTagManager {
       newData.eventTimeout = trackTimeout
     }
 
-    const delayedPageview = []
-
-    const trackDelayedPageView = () => {
-      if (
-        window.google_tag_manager &&
-        window.google_tag_manager.dataLayer &&
-        window.google_tag_manager.dataLayer.gtmLoad) {
-        delayedPageview.map(delayedData => window.dataLayer.push(delayedData))
-      } else {
-        // call trackDelayedPageview again
-        // to ensure dataLayer.gtmLoad is true
-        setTimeout(trackDelayedPageView, 100)
-      }
-    }
-
-    window.addEventListener('load', trackDelayedPageView)
-
-    // Tagging team requests that all initial gtm.view
-    // events be flagged with initialPageview=1
-    if (newData.event === 'gtm.view' && initialPageview === 1) {
-      newData.initialPageview = 1
-      initialPageview = 0
-    } else {
-      newData.initialPageview = 0
-    }
-
-    // we don't want `gtm.view` to fire before the default
-    // Page View and Window Loaded events
-    // but want the data, so delay in until after those events
-    if (document.readyState !== 'complete' && newData.event === 'gtm.view') {
-      delayedPageview.push(newData)
-    } else {
-      window.dataLayer.push(newData)
-    }
+    window.dataLayer.push(newData)
   }
 
   loadWithData(reducerModules) {
