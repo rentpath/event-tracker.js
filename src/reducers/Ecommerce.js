@@ -39,7 +39,7 @@ export default class EcommerceReducer {
   }
 
   adjustedTotal(factor, revenue) {
-    return revenue && !isNaN(revenue) ? (parseFloat(revenue) * factor)
+    return revenue && !isNaN(revenue) ? (parseFloat(revenue) * factor).toFixed(2)
       : revenue
   }
 

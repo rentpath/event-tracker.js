@@ -105,7 +105,7 @@ describe('EcommerceReducer', function() {
       }
       const expected = {
         ...data,
-        transactionAdjustedTotal: 40,
+        transactionAdjustedTotal: '40.00',
         transactionAffiliation: 'email',
         transactionId: '123',
         transactionTotal: '20',
@@ -136,7 +136,7 @@ describe('EcommerceReducer', function() {
       }
       const expected = {
         ...data,
-        transactionAdjustedTotal: 35,
+        transactionAdjustedTotal: '35.00',
         transactionAffiliation: 'email',
         transactionId: '123',
         transactionTotal: '20',
@@ -168,7 +168,7 @@ describe('EcommerceReducer', function() {
       }
       const expected = {
         ...data,
-        transactionAdjustedTotal: 40,
+        transactionAdjustedTotal: '40.00',
         transactionAffiliation: 'email',
         transactionId: '123',
         transactionTotal: '20',
@@ -196,7 +196,7 @@ describe('EcommerceReducer', function() {
       }
       const expected = {
         ...data,
-        transactionAdjustedTotal: 20,
+        transactionAdjustedTotal: '20.00',
         transactionAffiliation: 'phone',
         transactionId: '123',
         transactionTotal: '20',
@@ -224,7 +224,7 @@ describe('EcommerceReducer', function() {
       }
       const expected = {
         ...data,
-        transactionAdjustedTotal: 20,
+        transactionAdjustedTotal: '20.00',
         transactionAffiliation: 'email',
         transactionId: '123',
         transactionTotal: '20',
@@ -252,7 +252,7 @@ describe('EcommerceReducer', function() {
       }
       const expected = {
         ...data,
-        transactionAdjustedTotal: 20,
+        transactionAdjustedTotal: '20.00',
         transactionAffiliation: 'phone',
         transactionId: '123',
         transactionTotal: '20',
