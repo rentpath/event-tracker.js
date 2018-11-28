@@ -73,6 +73,9 @@ export default class GoogleTagManager {
     // Page View and Window Loaded events
     // but want the data, so delay in until after those events
     if (document.readyState !== 'complete' && newData.event === 'gtm.view') {
+      // clone data and send it with a new event name
+      window.dataLayer.push({ ...newData, event: 'gtm.pageinfo' })
+      // send gtm.view later
       delayedPageview.push(newData)
     } else {
       window.dataLayer.push(newData)
