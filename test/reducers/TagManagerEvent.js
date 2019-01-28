@@ -22,17 +22,17 @@ describe('EventReducer', function() {
 
     it('transform action to event and event_action', function() {
       const event = { action: 'click' }
-      expect(this.reduce(event)).to.eql({ action: 'click', event: 'gtm.click', event_action: 'click' })
+      expect(this.reduce(event)).to.eql({ action: 'click', event: 'gtm.eventTrackerClick', event_action: 'click' })
     })
 
     it('transform action and item to gtm events', function() {
       const event = { action: 'click', item: 'tag' }
-      expect(this.reduce(event)).to.eql({ action: 'click', event: 'gtm.click', event_action: 'click', event_label: 'tag', item: 'tag' })
+      expect(this.reduce(event)).to.eql({ action: 'click', event: 'gtm.eventTrackerClick', event_action: 'click', event_label: 'tag', item: 'tag' })
     })
 
     it('transform action and section to gtm events', function() {
       const event = { action: 'click', section: 'tag' }
-      expect(this.reduce(event)).to.eql({ action: 'click', event: 'gtm.click', event_action: 'click', event_category: 'tag', section: 'tag' })
+      expect(this.reduce(event)).to.eql({ action: 'click', event: 'gtm.eventTrackerClick', event_action: 'click', event_category: 'tag', section: 'tag' })
     })
   })
 })
