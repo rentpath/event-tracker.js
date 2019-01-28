@@ -1,5 +1,5 @@
 {
-  "version": "6.9.0",
+  "version": "6.10.0",
   "name": "@rentpath/event-tracker",
   "description": "Capture and deliver user events.",
   "license": "MIT",
