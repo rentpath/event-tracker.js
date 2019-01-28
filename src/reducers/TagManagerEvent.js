@@ -1,10 +1,14 @@
+const gtmEventTranslation = {
+  click: 'eventTrackerClick',
+}
+
 export default class TagManagerEventReducer {
   reduce(data = {}) {
-    if (!data.action) {
-      return data
-    }
+    if (!data.action) return data
+
+    const actionName = `${data.action}`
     const finalData = Object.assign(data, {
-      event: `gtm.${data.action}`,
+      event: `gtm.${gtmEventTranslation[actionName] || actionName}`,
       event_action: data.action,
     })
 
