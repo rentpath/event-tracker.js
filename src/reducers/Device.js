@@ -43,7 +43,7 @@ export default class DeviceReducer {
   }
 
   isScreenSize(width) {
-    return ['mobile','tablet'].find(size => {
+    return ['mobile', 'tablet'].find(size => {
       const type = screenSizeType[size]
       return width >= type.min && width <= type.max
     })
