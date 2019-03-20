@@ -69,5 +69,12 @@ describe('DeviceReducer', function() {
       this.reducer.config.enabledTypes.tablet = false
       expect(this.reducer.reduce().screen_type).to.equal('desktop')
     })
+    it('identifies tablet us sets mobile devices', function() {
+      // If you put tests below this you will need to reset or change
+      // global.window
+      global.window = { screen: { width: 410 } }
+      this.reducer.parser.setUA(agents.tablet)
+      expect(this.reducer.reduce().screen_type).to.equal('mobile')
+    })
   })
 })

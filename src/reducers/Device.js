@@ -1,5 +1,20 @@
 import Parser from 'ua-parser-js'
 
+const screenSizeType = {
+  mobile: {
+    min: 0,
+    max: 480,
+  },
+  tablet: {
+    min: 481,
+    max: 1145,
+  },
+  desktop: {
+    min: 1146,
+    max: 99999,
+  },
+}
+
 export default class DeviceReducer {
   constructor(config) {
     this.config = Object.assign(this.defaults, config)
@@ -27,7 +42,24 @@ export default class DeviceReducer {
     return `${window.screen.width}x${window.screen.height}`
   }
 
+  isScreenSize(width) {
+    return ['mobile','tablet'].find(size => {
+      const type = screenSizeType[size]
+      return width >= type.min && width <= type.max
+    })
+  }
+
   get screenType() {
+    // We want to set the screen_type based pixel size and not via the
+    // userAgent to align with how GA handles attribution
+    const width = window.screen.width
+
+    if (width > 0) {
+      return this.isScreenSize(width) || 'desktop'
+    }
+
+    // Fallback to our old logic of using the device userAgent to figure out
+    // screen_type
     const type = this.parser.getDevice().type
     return this.config.enabledTypes[type] ? type : this.config.defaultType
   }
