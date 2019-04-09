@@ -11,7 +11,9 @@ export default class GoogleTagManager {
   }
 
   get url() {
-    const { gtmAuth, gtmPreview, gtmId } = this.config
+    const {
+      gtmAuth, gtmPreview, gtmId,
+    } = this.config
     return `https://www.googletagmanager.com/gtm.js?id=${gtmId}&gtm_auth=${gtmAuth}&gtm_preview=${gtmPreview}&gtm_cookies_win=x`
   }
 
@@ -24,6 +26,7 @@ export default class GoogleTagManager {
   }
 
   track(data) {
+    window.performance.mark('gtmTrackStart')
     const { trackCallback, trackTimeout } = this.config
 
     const newData = { ...data }
@@ -48,9 +51,9 @@ export default class GoogleTagManager {
 
     const trackDelayedPageView = () => {
       if (
-        window.google_tag_manager &&
-        window.google_tag_manager.dataLayer &&
-        window.google_tag_manager.dataLayer.gtmLoad) {
+        window.google_tag_manager
+        && window.google_tag_manager.dataLayer
+        && window.google_tag_manager.dataLayer.gtmLoad) {
         delayedPageview.map(delayedData => window.dataLayer.push(delayedData))
       } else {
         // call trackDelayedPageview again
@@ -81,6 +84,8 @@ export default class GoogleTagManager {
     } else {
       window.dataLayer.push(newData)
     }
+    window.performance.mark('gtmTrackEnd')
+    window.performance.measure('gtmTrack', 'gtmTrackStart', 'gtmTrackEnd')
   }
 
   loadWithData(reducerModules) {

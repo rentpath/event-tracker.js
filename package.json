@@ -16,42 +16,39 @@
   "scripts": {
     "clean": "rm -rf lib",
     "build": "babel -d lib src",
-    "build:watch": "npm run build -- --watch",
+    "build:watch": "yarn build --watch",
     "lint": "eslint src test",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "yarn lint --fix",
     "test": "mocha --compilers js:babel-core/register --recursive",
-    "test:watch": "npm run test -- --watch",
+    "test:watch": "yarn test --watch",
     "test:cov": "babel-node $(npm bin)/istanbul cover $(npm bin)/_mocha -- --recursive",
-    "preversion": "npm run lint && npm test",
-    "version": "npm run build && git add -A",
+    "preversion": "yarn lint && yarn test",
+    "version": "yarn build && git add -A",
     "postversion": "git push --follow-tags"
   },
   "devDependencies": {
-    "@rentpath/eslint-config-rentpath": "^3.0.1",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.3",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-decorators-legacy": "^1.3.5",
-    "babel-plugin-transform-es2015-classes": "^6.24.1",
-    "babel-plugin-transform-object-assign": "^6.22.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
+    "@babel/preset-env": "^7.4.3",
+    "@rentpath/eslint-config-rentpath": "^4.0.2",
+    "babel-eslint": "^10.0.1",
     "chai": "^4.1.2",
-    "eslint": "^4.19.1",
-    "istanbul": "^1.0.0-alpha",
-    "jsdom": "11.10.0",
-    "jsdom-global": "3.0.2",
-    "mocha": "^5.1.1",
-    "sinon": "^5.0.7",
-    "webpack": "^1.12.13"
+    "eslint": "^5.16.0",
+    "istanbul": "^0.4.5",
+    "jsdom": "^14.0.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^6.0.2",
+    "sinon": "^7.3.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   },
   "engines": {
-    "node": ">=4.2.1",
-    "npm": ">=3"
+    "node": ">=10.0.0",
+    "npm": ">=4"
   },
   "dependencies": {
     "cookie": "^0.3.1",
-    "ua-parser-js": "^0.7.18"
+    "ua-parser-js": "^0.7.19"
   }
 }
