@@ -29,6 +29,8 @@ export default class GoogleTagManager {
     window.performance.mark('gtmTrackStart')
     const { trackCallback, trackTimeout } = this.config
 
+    console.log('Tracking >>>', data)
+
     const newData = { ...data }
 
     if (trackCallback) {
@@ -47,22 +49,22 @@ export default class GoogleTagManager {
       newData.eventTimeout = trackTimeout
     }
 
-    const delayedPageview = []
+    // const delayedPageview = []
 
-    const trackDelayedPageView = () => {
-      if (
-        window.google_tag_manager
-        && window.google_tag_manager.dataLayer
-        && window.google_tag_manager.dataLayer.gtmLoad) {
-        delayedPageview.map(delayedData => window.dataLayer.push(delayedData))
-      } else {
-        // call trackDelayedPageview again
-        // to ensure dataLayer.gtmLoad is true
-        setTimeout(trackDelayedPageView, 100)
-      }
-    }
+    // const trackDelayedPageView = () => {
+    //   if (
+    //     window.google_tag_manager
+    //     && window.google_tag_manager.dataLayer
+    //     && window.google_tag_manager.dataLayer.gtmLoad) {
+    //     delayedPageview.map(delayedData => window.dataLayer.push(delayedData))
+    //   } else {
+    //     // call trackDelayedPageview again
+    //     // to ensure dataLayer.gtmLoad is true
+    //     setTimeout(trackDelayedPageView, 100)
+    //   }
+    // }
 
-    window.addEventListener('load', trackDelayedPageView)
+    // window.addEventListener('load', trackDelayedPageView)
 
     // Tagging team requests that all initial gtm.view
     // events be flagged with initialPageview=1
@@ -80,7 +82,7 @@ export default class GoogleTagManager {
       // clone data and send it with a new event name
       window.dataLayer.push({ ...newData, event: 'gtm.pageinfo' })
       // send gtm.view later
-      delayedPageview.push(newData)
+      window.dataLayer.push({ ...newData })
     } else {
       window.dataLayer.push(newData)
     }
