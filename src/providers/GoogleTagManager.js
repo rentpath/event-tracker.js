@@ -26,10 +26,7 @@ export default class GoogleTagManager {
   }
 
   track(data) {
-    window.performance.mark('gtmTrackStart')
     const { trackCallback, trackTimeout } = this.config
-
-    console.log('Tracking >>>', data)
 
     const newData = { ...data }
 
@@ -86,8 +83,6 @@ export default class GoogleTagManager {
     } else {
       window.dataLayer.push(newData)
     }
-    window.performance.mark('gtmTrackEnd')
-    window.performance.measure('gtmTrack', 'gtmTrackStart', 'gtmTrackEnd')
   }
 
   loadWithData(reducerModules) {
@@ -104,7 +99,11 @@ export default class GoogleTagManager {
 
   createScriptDoc(reducerModules) {
     const script = document.createElement('script')
-    script.addEventListener('load', () => this.onLoad(reducerModules))
+    const gtmLoad = new Event('gtm_load', { bubbles: true })
+    script.addEventListener('load', () => {
+      window.dispatchEvent(gtmLoad)
+      this.onLoad(reducerModules)
+    })
     return Object.assign(script, {
       src: this.url,
       type: 'text/javascript',
