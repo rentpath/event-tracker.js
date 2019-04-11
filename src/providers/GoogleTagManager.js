@@ -1,5 +1,7 @@
 import configurable from '../utils/configurable'
 
+let initialPageview = 1
+
 @configurable
 export default class GoogleTagManager {
 
@@ -25,7 +27,6 @@ export default class GoogleTagManager {
     const { trackCallback, trackTimeout } = this.config
 
     const newData = { ...data }
-    let initialPageview = 1
 
     if (trackCallback) {
       // If you specify eventCallback in the data layer,
