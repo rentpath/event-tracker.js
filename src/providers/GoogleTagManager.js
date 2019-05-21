@@ -11,7 +11,9 @@ export default class GoogleTagManager {
   }
 
   get url() {
-    const { gtmAuth, gtmPreview, gtmId } = this.config
+    const {
+      gtmAuth, gtmPreview, gtmId,
+    } = this.config
     return `https://www.googletagmanager.com/gtm.js?id=${gtmId}&gtm_auth=${gtmAuth}&gtm_preview=${gtmPreview}&gtm_cookies_win=x`
   }
 
@@ -44,22 +46,22 @@ export default class GoogleTagManager {
       newData.eventTimeout = trackTimeout
     }
 
-    const delayedPageview = []
+    // const delayedPageview = []
 
-    const trackDelayedPageView = () => {
-      if (
-        window.google_tag_manager &&
-        window.google_tag_manager.dataLayer &&
-        window.google_tag_manager.dataLayer.gtmLoad) {
-        delayedPageview.map(delayedData => window.dataLayer.push(delayedData))
-      } else {
-        // call trackDelayedPageview again
-        // to ensure dataLayer.gtmLoad is true
-        setTimeout(trackDelayedPageView, 100)
-      }
-    }
+    // const trackDelayedPageView = () => {
+    //   if (
+    //     window.google_tag_manager
+    //     && window.google_tag_manager.dataLayer
+    //     && window.google_tag_manager.dataLayer.gtmLoad) {
+    //     delayedPageview.map(delayedData => window.dataLayer.push(delayedData))
+    //   } else {
+    //     // call trackDelayedPageview again
+    //     // to ensure dataLayer.gtmLoad is true
+    //     setTimeout(trackDelayedPageView, 100)
+    //   }
+    // }
 
-    window.addEventListener('load', trackDelayedPageView)
+    // window.addEventListener('load', trackDelayedPageView)
 
     // Tagging team requests that all initial gtm.view
     // events be flagged with initialPageview=1
@@ -75,9 +77,9 @@ export default class GoogleTagManager {
     // but want the data, so delay in until after those events
     if (document.readyState !== 'complete' && newData.event === 'gtm.view') {
       // clone data and send it with a new event name
-      window.dataLayer.push({ ...newData, event: 'gtm.pageinfo' })
+      window.dataLayer.push({ ...newData, event: 'gtm.pageinfo' }, { ...newData })
       // send gtm.view later
-      delayedPageview.push(newData)
+      // window.dataLayer.push({ ...newData })
     } else {
       window.dataLayer.push(newData)
     }
@@ -97,7 +99,11 @@ export default class GoogleTagManager {
 
   createScriptDoc(reducerModules) {
     const script = document.createElement('script')
-    script.addEventListener('load', () => this.onLoad(reducerModules))
+    const gtmLoad = new Event('gtm_load', { bubbles: true })
+    script.addEventListener('load', () => {
+      window.dispatchEvent(gtmLoad)
+      this.onLoad(reducerModules)
+    })
     return Object.assign(script, {
       src: this.url,
       type: 'text/javascript',

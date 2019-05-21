@@ -1,6 +1,11 @@
 {
   "extends": "@rentpath/eslint-config-rentpath",
   "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
+  },
   "rules": {
     "global-require": 0,
     "prefer-arrow-callback": 0,
@@ -21,6 +26,6 @@
     "browser": true,
     "node": true,
     "es6": true,
-    "mocha": true,
+    "mocha": true
   }
 }
