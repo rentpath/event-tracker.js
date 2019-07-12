@@ -7,6 +7,11 @@
     "no-unused-expressions": 0,
     "no-bitwise": ["error", { "allow": ["~"] }]
   },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
+  },
   "plugins": [
     "babel"
   ],

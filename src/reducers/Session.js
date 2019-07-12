@@ -7,6 +7,7 @@ export default class SessionReducer {
   }
 
   reduce(data = {}) {
+    console.log('The Data', data)
     return Object.assign(data, this.data)
   }
 
