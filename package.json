@@ -24,7 +24,8 @@
     "test:cov": "babel-node $(npm bin)/istanbul cover $(npm bin)/_mocha -- --recursive",
     "preversion": "npm run lint && npm test",
     "version": "npm run build && git add -A",
-    "postversion": "git push --follow-tags"
+    "postversion": "git push --follow-tags",
+    "prepublish": "yarn test && yarn lint && yarn build"
   },
   "devDependencies": {
     "@rentpath/eslint-config-rentpath": "^3.0.1",

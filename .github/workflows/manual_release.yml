@@ -1,0 +1,12 @@
+name: Publish on Manual Release
+on:
+  release:
+    types: [created]
+jobs:
+  released:
+    runs-on: ubuntu-latest
+    if: contains(github.event.release.author.login, 'rentpath-jenkins') == false && contains(github.event.release.author.login, 'rentpath-semantic-release') == false
+    steps:
+    - name: trigger build
+      run: |
+        curl -X POST -H "Accept: application/vnd.github.everest-preview+json" -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/dispatches -d '{"event_type":"semantic-release","client_payload":{"ref":"${{ github.ref }}","sha":"${{ github.sha }}"}}'
