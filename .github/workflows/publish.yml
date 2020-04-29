@@ -1,0 +1,27 @@
+name: Publish Package
+on:
+  repository_dispatch:
+    types: [semantic-release]
+jobs:
+  publish:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.client_payload.ref }}
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://npm.pkg.github.com/'
+        scope: '@rentpath'
+    - name: install dependencies
+      run: |
+        yarn config set @rentpath:registry https://npm.pkg.github.com
+        yarn install --ignore-scripts
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+    - run: npm rebuild && npm run prepare --if-present
+    - name: publish
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
